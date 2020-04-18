@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Heart.gd" type="Script" id=1]
 [ext_resource path="res://Camera.gd" type="Script" id=2]
 [ext_resource path="res://MeshInstance.gd" type="Script" id=3]
+[ext_resource path="res://Menu.tscn" type="PackedScene" id=4]
 
 [sub_resource type="BoxShape" id=1]
 
@@ -15,11 +16,11 @@ bounce = 0.2
 [sub_resource type="SphereShape" id=4]
 radius = 0.1
 
-[sub_resource type="SphereMesh" id=7]
+[sub_resource type="SphereMesh" id=5]
 radius = 0.1
 height = 0.2
 
-[sub_resource type="Shader" id=9]
+[sub_resource type="Shader" id=6]
 code = "shader_type spatial;
 
 uniform float squish : hint_range(0.0f, 1.0f);
@@ -32,27 +33,30 @@ void vertex() {
 	VERTEX.y = VERTEX.y * squish;
 }"
 
-[sub_resource type="ShaderMaterial" id=10]
-shader = SubResource( 9 )
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 6 )
 shader_param/squish = 1.0
 
-[sub_resource type="BoxShape" id=5]
+[sub_resource type="BoxShape" id=8]
 
-[sub_resource type="CubeMesh" id=6]
+[sub_resource type="CubeMesh" id=9]
 
-[sub_resource type="SpatialMaterial" id=8]
+[sub_resource type="SpatialMaterial" id=10]
 albedo_color = Color( 1, 0.317647, 0.317647, 1 )
 
 [node name="Spatial" type="Spatial"]
+
+[node name="Control" parent="." instance=ExtResource( 4 )]
 
 [node name="StaticBody" type="StaticBody" parent="."]
 transform = Transform( 44.6974, 0, 0, 0, 0.198162, 0, 0, 0, 41.314, 0, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00871884, -0.644971, -0.00110533 )
+transform = Transform( 1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0.00871884, -0.644971, -0.00110533 )
 mesh = SubResource( 2 )
 material/0 = null
 
@@ -60,6 +64,7 @@ material/0 = null
 transform = Transform( -0.88748, -0.399678, -0.229428, -0.451527, 0.654499, 0.606428, -0.0922149, 0.641785, -0.76132, -17.7615, 15.6952, 0 )
 shadow_enabled = true
 directional_shadow_normal_bias = 0.0
+directional_shadow_depth_range = 1
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, -0.00260043, 0.999997, 0, -0.999997, -0.00260043, -0.179622, 2.49267, -0.0152571 )
@@ -79,8 +84,8 @@ __meta__ = {
 }
 
 [node name="MeshInstance" type="MeshInstance" parent="Heart"]
-mesh = SubResource( 7 )
-material/0 = SubResource( 10 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 7 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -89,13 +94,13 @@ __meta__ = {
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.67723, -0.15858, 0.276445 )
 
 [node name="CollisionShape" type="CollisionShape" parent="w"]
-shape = SubResource( 5 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="MeshInstance" type="MeshInstance" parent="w"]
-mesh = SubResource( 6 )
+mesh = SubResource( 9 )
 material/0 = null
 __meta__ = {
 "_edit_lock_": true
@@ -105,13 +110,13 @@ __meta__ = {
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.28602, -0.488627, -0.341284 )
 
 [node name="CollisionShape" type="CollisionShape" parent="w2"]
-shape = SubResource( 5 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="MeshInstance" type="MeshInstance" parent="w2"]
-mesh = SubResource( 6 )
+mesh = SubResource( 9 )
 material/0 = null
 __meta__ = {
 "_edit_lock_": true
@@ -122,8 +127,8 @@ visible = false
 script = ExtResource( 3 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Spatial"]
-mesh = SubResource( 7 )
-material/0 = SubResource( 8 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 10 )
 __meta__ = {
 "_edit_lock_": true
 }

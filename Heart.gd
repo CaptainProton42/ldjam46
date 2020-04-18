@@ -11,7 +11,7 @@ func _on_Heart_input_event(camera, event, pos, normal, shape_idx):
 	if event is InputEventMouseButton and !event.pressed and event.button_index == 1:
 		charging = false
 		var force_dir = -normal
-		force = 5.0 * force_dir.normalized();
+		force = 4.0 * force_dir.normalized();
 		force.y = 10.0 * charge
 		charge = 0.0
 
