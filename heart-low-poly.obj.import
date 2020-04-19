@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/heart-low-poly.obj-8992fa60e4ed7514c023fd03868bbe05.mesh"
+
+[deps]
+
+files=[ "res://.import/heart-low-poly.obj-8992fa60e4ed7514c023fd03868bbe05.mesh" ]
+
+source_file="res://heart-low-poly.obj"
+dest_files=[ "res://.import/heart-low-poly.obj-8992fa60e4ed7514c023fd03868bbe05.mesh", "res://.import/heart-low-poly.obj-8992fa60e4ed7514c023fd03868bbe05.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

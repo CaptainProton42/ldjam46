@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/heart_no_valves.obj-ee38308399b13810a2158d1d3a94a557.mesh"
+
+[deps]
+
+files=[ "res://.import/heart_no_valves.obj-ee38308399b13810a2158d1d3a94a557.mesh" ]
+
+source_file="res://heart_no_valves.obj"
+dest_files=[ "res://.import/heart_no_valves.obj-ee38308399b13810a2158d1d3a94a557.mesh", "res://.import/heart_no_valves.obj-ee38308399b13810a2158d1d3a94a557.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

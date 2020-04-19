@@ -1,0 +1,15 @@
+[gd_resource type="Animation" format=2]
+
+[resource]
+resource_name = "heartbeat"
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("CollisionShapePhysics/MeshInstance:material/0:shader_param/bloat")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1.00317, -0.25, 0, 0.0478099, 0.00268185, 1.03851, -0.0306474, -0.00680387, 0.0269697, -0.00408232, 0.968434, -0.0343251, 0.00612342, 0.0306474, 0.0115665, 1.11404, -0.034325, -0.0054431, 0.128719, -0.0156487, 1, -0.144656, 0.0168508, 0.218209, -0.000680387 ),
+"times": PoolRealArray( 0.00245179, 0.102975, 0.172851, 0.288085, 0.521005 )
+}
