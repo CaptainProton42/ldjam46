@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/TrashCollider.obj-385b3bd74aff2b52dca2372a1f667704.mesh"
+
+[deps]
+
+files=[ "res://.import/TrashCollider.obj-385b3bd74aff2b52dca2372a1f667704.mesh" ]
+
+source_file="res://materials/TrashCollider.obj"
+dest_files=[ "res://.import/TrashCollider.obj-385b3bd74aff2b52dca2372a1f667704.mesh", "res://.import/TrashCollider.obj-385b3bd74aff2b52dca2372a1f667704.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

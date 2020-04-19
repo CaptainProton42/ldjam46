@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/TrafficLight.obj-5efe587020c41208340f03252c621baa.mesh"
+
+[deps]
+
+files=[ "res://.import/TrafficLight.obj-5efe587020c41208340f03252c621baa.mesh" ]
+
+source_file="res://fabs/TrafficLight.obj"
+dest_files=[ "res://.import/TrafficLight.obj-5efe587020c41208340f03252c621baa.mesh", "res://.import/TrafficLight.obj-5efe587020c41208340f03252c621baa.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
