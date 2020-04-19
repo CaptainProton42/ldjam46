@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/StopSign.obj-b8e50b1b707250c147006f18b01092f1.mesh"
+
+[deps]
+
+files=[ "res://.import/StopSign.obj-b8e50b1b707250c147006f18b01092f1.mesh" ]
+
+source_file="res://meshes/StopSign.obj"
+dest_files=[ "res://.import/StopSign.obj-b8e50b1b707250c147006f18b01092f1.mesh", "res://.import/StopSign.obj-b8e50b1b707250c147006f18b01092f1.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

@@ -17,20 +17,33 @@ shader = SubResource( 1 )
 [sub_resource type="ViewportTexture" id=3]
 viewport_path = NodePath("Viewport")
 
-[node name="Monitor" type="Node2D"]
-position = Vector2( 58.9, 114.95 )
+[node name="Monitor" type="Control"]
+grow_horizontal = 2
+grow_vertical = 2
+rect_scale = Vector2( 0.376595, 0.376595 )
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PoolVector2Array( 0, 0, 0, 200, 400, 200, 400, 0, 0, 0 )
+width = 6.0
+default_color = Color( 1, 0.392157, 0.392157, 1 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource( 2 )
-margin_right = 200.0
-margin_bottom = 100.0
+margin_right = 400.0
+margin_bottom = 200.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Viewport" type="Viewport" parent="."]
-size = Vector2( 200, 100 )
+size = Vector2( 400, 200 )
 transparent_bg = true
 render_target_v_flip = true
 
