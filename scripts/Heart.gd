@@ -8,10 +8,14 @@ onready var material = get_node("CollisionShapePhysics/MeshInstance").get_surfac
 onready var monitor = get_node("../Monitor")
 
 onready var splatter_spawner = preload("res://SpawnBloodSplatter.tscn")
+onready var particles = get_node("CPUParticles")
+
+export var jump_force = 5.0
 
 enum STATE {
 	charging,
 	falling,
+	rolling,
 	idle,
 	dead
 }
@@ -28,6 +32,8 @@ var time_till_death = 3.0
 
 signal dead
 
+var charge_normal
+
 func _ready():
 	animation_tree.set_active(true)
 	animation_tree.set("parameters/heartbeat_amplitude/blend_amount", 0.5)
@@ -41,11 +47,13 @@ func _on_collider_input(camera, event, pos, normal, shape_idx):
 		if state == STATE.idle:
 			_enter_state(STATE.charging)
 			charge = 0.0
+			charge_normal = normal
 	if event is InputEventMouseButton and !event.pressed and event.button_index == 1:
 		if state == STATE.charging:
 			var force_dir = -normal
-			var force = 5.0 * force_dir.normalized()
-			force.y = 10.0 * charge
+			charge_normal = normal
+			var force = (0.5 + 0.5*charge) * jump_force * force_dir.normalized()
+			force.y *= -1.0
 			apply_impulse(Vector3(0.0, 0.0, 0.0), force)
 			restart_heart()
 
@@ -55,6 +63,7 @@ func _process(delta):
 		animation_tree.set("parameters/heartbeat_amplitude/blend_amount", life)
 	if state == STATE.charging:
 		material.set_shader_param("squish", charge)
+		material.set_shader_param("squish_dir", charge_normal)
 	if state != STATE.dead:
 		if (life <= 0.0):
 			emit_signal("dead")
@@ -69,9 +78,12 @@ func _physics_process(delta):
 	if state == STATE.falling:
 		if get_colliding_bodies().size() > 0:
 			pass
-	if state == STATE.charging or state == STATE.idle:
+	if state == STATE.charging or state == STATE.idle or state == STATE.rolling:
 		if get_colliding_bodies().size() == 0:
 			_enter_state(STATE.falling)
+	if state == STATE.rolling:
+		if linear_velocity.length() < 0.1:
+			_enter_state(STATE.idle)
 
 func _integrate_forces( physics_state ):
 	if state == STATE.falling:
@@ -81,9 +93,8 @@ func _integrate_forces( physics_state ):
 			var splatter = splatter_spawner.instance()
 			splatter.look_at(collision_normal.rotated(Vector3(-1.0, 0.0, 0.0), 0.5*PI), Vector3(0.0, 1.0, 0.0))
 			splatter.translation = collision_pos + Vector3(0.0, 0.001, 0.0)
-			print("hole")
 			get_parent().add_child(splatter)
-			_enter_state(STATE.idle)
+			_enter_state(STATE.rolling)
 			
 func restart_heart():
 	life = 1.0

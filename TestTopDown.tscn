@@ -1,24 +1,18 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Monitor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Camera.gd" type="Script" id=2]
 [ext_resource path="res://Heart.tscn" type="PackedScene" id=3]
+[ext_resource path="res://environments/world.tres" type="Environment" id=4]
+[ext_resource path="res://HelpCircle.tscn" type="PackedScene" id=7]
 
 [sub_resource type="BoxShape" id=1]
 
 [sub_resource type="CubeMesh" id=2]
 
-[sub_resource type="Environment" id=3]
-ambient_light_color = Color( 0.713726, 0.737255, 0.870588, 1 )
-dof_blur_far_enabled = true
-dof_blur_far_distance = 4.5
-dof_blur_far_transition = 0.5
-dof_blur_near_enabled = true
-dof_blur_near_transition = 0.5
+[sub_resource type="BoxShape" id=3]
 
-[sub_resource type="BoxShape" id=4]
-
-[sub_resource type="CubeMesh" id=5]
+[sub_resource type="CubeMesh" id=4]
 
 [node name="Spatial" type="Spatial"]
 
@@ -36,13 +30,13 @@ mesh = SubResource( 2 )
 material/0 = null
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( -0.88748, -0.399678, -0.229428, -0.451527, 0.654499, 0.606428, -0.0922149, 0.641785, -0.76132, -17.7615, 15.6952, 0 )
+transform = Transform( 0.298735, -0.942899, -0.147305, -0.171566, -0.204901, 0.963629, -0.938788, -0.262597, -0.222981, 0.28958, 3.66272, -1.06944 )
+light_specular = 0.1
 shadow_enabled = true
 directional_shadow_normal_bias = 0.0
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, -0.00260043, 0.999997, 0, -0.999997, -0.00260043, -1.66978, 4.18797, -0.0152571 )
-environment = SubResource( 3 )
 script = ExtResource( 2 )
 
 [node name="Heart" parent="." instance=ExtResource( 3 )]
@@ -52,13 +46,13 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.864156, 3.41322, -0.195002 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.67723, -0.15858, 0.276445 )
 
 [node name="CollisionShape" type="CollisionShape" parent="w"]
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="MeshInstance" type="MeshInstance" parent="w"]
-mesh = SubResource( 5 )
+mesh = SubResource( 4 )
 material/0 = null
 __meta__ = {
 "_edit_lock_": true
@@ -68,13 +62,13 @@ __meta__ = {
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.756382, 1.40545, 2.35723 )
 
 [node name="CollisionShape" type="CollisionShape" parent="w3"]
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="MeshInstance" type="MeshInstance" parent="w3"]
-mesh = SubResource( 5 )
+mesh = SubResource( 4 )
 material/0 = null
 __meta__ = {
 "_edit_lock_": true
@@ -84,13 +78,13 @@ __meta__ = {
 transform = Transform( 1, 0, 0, 0, 2.75078, 0, 0, 0, 1, -1.36258, 0.117521, -0.701398 )
 
 [node name="CollisionShape" type="CollisionShape" parent="w2"]
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="MeshInstance" type="MeshInstance" parent="w2"]
-mesh = SubResource( 5 )
+mesh = SubResource( 4 )
 material/0 = null
 __meta__ = {
 "_edit_lock_": true
@@ -100,14 +94,20 @@ __meta__ = {
 transform = Transform( 1, 0, 0, 0, 1.09128, -0.917942, 0, 2.52506, 0.396715, -0.990558, 0.0377135, -3.62437 )
 
 [node name="CollisionShape" type="CollisionShape" parent="w4"]
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="MeshInstance" type="MeshInstance" parent="w4"]
-mesh = SubResource( 5 )
+mesh = SubResource( 4 )
 material/0 = null
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 4 )
+
+[node name="HelpCircle" parent="." instance=ExtResource( 7 )]
+heart_path = NodePath("../Heart")

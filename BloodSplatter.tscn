@@ -1,35 +1,22 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://splatter.png" type="Texture" id=1]
+[ext_resource path="res://shaders/splatter.shader" type="Shader" id=1]
 [ext_resource path="res://scripts/BloodSplatter.gd" type="Script" id=2]
 
-[sub_resource type="QuadMesh" id=1]
-size = Vector2( 0.2, 0.2 )
+[sub_resource type="CylinderMesh" id=1]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.001
+radial_segments = 16
+rings = 1
 
-[sub_resource type="Shader" id=2]
-code = "shader_type spatial;
-
-uniform float size : hint_range(0.0f, 2.0f);
-uniform float alpha : hint_range(0.0f, 1.0f);
-uniform sampler2D decal;
-
-void vertex() {
-	VERTEX = size * VERTEX;
-}
-
-void fragment() {
-	vec4 color = texture(decal, UV);
-	ALBEDO = color.rgb;
-	ALPHA = color.a * alpha;
-}"
-
-[sub_resource type="ShaderMaterial" id=3]
-shader = SubResource( 2 )
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 1 )
 shader_param/size = 1.0
 shader_param/alpha = 1.0
-shader_param/decal = ExtResource( 1 )
+shader_param/color = Color( 1, 0.321569, 0.321569, 1 )
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "fade"
 length = 1.5
 tracks/0/type = "value"
@@ -57,7 +44,7 @@ tracks/1/keys = {
 "values": [ 1.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:material/0:shader_param/size")
 tracks/0/interp = 1
@@ -84,11 +71,10 @@ tracks/1/keys = {
 }
 
 [node name="BloodSplatter" type="MeshInstance"]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0, 0 )
 mesh = SubResource( 1 )
-material/0 = SubResource( 3 )
+material/0 = SubResource( 2 )
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/fade = SubResource( 4 )
-anims/spill = SubResource( 5 )
+anims/fade = SubResource( 3 )
+anims/spill = SubResource( 4 )
