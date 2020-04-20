@@ -8,6 +8,7 @@ onready var material = get_node("CollisionShapePhysics/MeshInstance").get_surfac
 
 onready var audio_blip = get_node("AudioBlip")
 onready var audio_fade_out = get_node("AudioFadeOut")
+onready var audio_slap = get_node("AudioStreamPlayer")
 
 onready var splatter_spawner = preload("res://SpawnBloodSplatter.tscn")
 onready var particles = get_node("CPUParticles")
@@ -150,6 +151,7 @@ func _integrate_forces( physics_state ):
 				splatter.translation = collision_pos + Vector3(0.0, 0.001, 0.0)
 				linear_damp = 0.8
 				charge = 0.0
+				audio_slap.play()
 				_enter_state(STATE.rolling)
 
 func kill():
@@ -183,4 +185,4 @@ func restart_heart(force_dir):
 	timer = 0.0
 	charge = 0.0
 	emit_signal("jump", timing_quality)
-	_enter_state(STATE.falling)
+	_enter_state(STATE.rolling)
