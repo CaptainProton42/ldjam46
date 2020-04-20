@@ -18,7 +18,7 @@ shader_param/squish_dir = Vector3( 0, 1, 0 )
 shader_param/offset = Vector3( 1, 0.9, 0 )
 
 [sub_resource type="SphereShape" id=3]
-radius = 0.25
+radius = 0.65
 
 [sub_resource type="Animation" id=4]
 resource_name = "heartbeat"
