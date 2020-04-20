@@ -13,6 +13,7 @@ data = PoolVector3Array( -5, 7.8172, -0.2087, 5, 7.8172, -0.2087, -5, 3, 4.7913,
 [node name="House" type="Spatial"]
 
 [node name="StaticBody" type="StaticBody" parent="."]
+input_ray_pickable = false
 
 [node name="House" type="MeshInstance" parent="StaticBody"]
 mesh = ExtResource( 6 )
