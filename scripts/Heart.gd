@@ -31,7 +31,8 @@ enum STATE {
 	falling,
 	rolling,
 	idle,
-	dead
+	dead,
+	boxed
 }
 
 var state = STATE.idle
@@ -95,7 +96,7 @@ func _process(delta):
 			help_circle.arrow.visible = true
 		material.set_shader_param("squish", charge)
 		material.set_shader_param("squish_dir", charge_normal)
-	if state != STATE.dead:
+	if state != STATE.dead and state != STATE.boxed:
 		if (life <= 0.0):
 			emit_signal("dead")
 			_enter_state(STATE.dead)
