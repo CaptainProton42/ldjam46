@@ -54,7 +54,7 @@ shadow_enabled = true
 directional_shadow_normal_bias = 0.0
 
 [node name="Heart" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.01476, 3.13379, -0.195002 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.1442, 0.714386, -0.195002 )
 
 [node name="w" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.67723, -0.15858, 0.276445 )

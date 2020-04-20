@@ -263,6 +263,7 @@ parameters/heartbeat/seek_position = -1.0
 parameters/pop/seek_position = -1.0
 
 [node name="Arrow" type="Spatial" parent="."]
+visible = false
 
 [node name="MeshInstance" type="MeshInstance" parent="Arrow"]
 transform = Transform( 0.25, 0, 0, 0, -1.09278e-08, 0.25, 0, -0.25, -1.09278e-08, 0, 0, -0.808748 )
