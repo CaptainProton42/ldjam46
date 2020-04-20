@@ -4,6 +4,7 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "pulse"
+length = 0.6
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:node_scale")
 tracks/0/interp = 1
