@@ -39,9 +39,15 @@ func _on_heart_entered_state(state):
 		arrow.visible = true
 	else:
 		arrow.visible = false
+
 	if state == heart.STATE.idle or state == heart.STATE.charging:
 		dashed_circle.get_surface_material(0).set_shader_param("active", true)
 		charge_circle.get_surface_material(0).set_shader_param("active", true)
 	else:
 		dashed_circle.get_surface_material(0).set_shader_param("active", false)
 		charge_circle.get_surface_material(0).set_shader_param("active", false)
+
+	if state == heart.STATE.dead:
+		visible = false
+	else:
+		visible = true
