@@ -13,7 +13,7 @@ points = PoolVector3Array( -1.89679, -0.459073, -0.0929708, -1.8516, -0.302933, 
 shader = ExtResource( 3 )
 shader_param/heart_color = Color( 1, 0.392157, 0.392157, 1 )
 shader_param/bloat = 1.0
-shader_param/squish = null
+shader_param/squish = 0.0
 shader_param/squish_dir = Vector3( 0, 1, 0 )
 shader_param/offset = Vector3( 1, 0.9, 0 )
 
@@ -89,10 +89,10 @@ tracks/0/keys = {
 [sub_resource type="AnimationNodeAdd2" id=7]
 
 [sub_resource type="AnimationNodeAnimation" id=8]
-animation = "idle"
+animation = "heartbeat"
 
 [sub_resource type="AnimationNodeAnimation" id=9]
-animation = "heartbeat"
+animation = "idle"
 
 [sub_resource type="AnimationNodeAnimation" id=10]
 animation = "unsquish"
@@ -104,13 +104,13 @@ animation = "unsquish"
 [sub_resource type="AnimationNodeTimeSeek" id=13]
 
 [sub_resource type="AnimationNodeBlendTree" id=14]
-graph_offset = Vector2( -305, 107.75 )
+graph_offset = Vector2( 0, 48.75 )
 nodes/Add2/node = SubResource( 7 )
 nodes/Add2/position = Vector2( 900, 260 )
-nodes/anim_didle/node = SubResource( 8 )
-nodes/anim_didle/position = Vector2( 20, 120 )
-nodes/anim_heartbeat/node = SubResource( 9 )
+nodes/anim_heartbeat/node = SubResource( 8 )
 nodes/anim_heartbeat/position = Vector2( 20, 240 )
+nodes/anim_idle/node = SubResource( 9 )
+nodes/anim_idle/position = Vector2( 20, 100 )
 nodes/anim_unsquish/node = SubResource( 10 )
 nodes/anim_unsquish/position = Vector2( 420, 380 )
 nodes/enable_unsquish/node = SubResource( 11 )
@@ -120,7 +120,7 @@ nodes/heartbeat_amplitude/position = Vector2( 640, 120 )
 nodes/heartbeat_restart/node = SubResource( 13 )
 nodes/heartbeat_restart/position = Vector2( 360, 220 )
 nodes/output/position = Vector2( 1180, 320 )
-node_connections = [ "output", 0, "Add2", "heartbeat_amplitude", 0, "anim_idle", "heartbeat_amplitude", 1, "heartbeat_restart", "heartbeat_restart", 0, "anim_heartbeat", "Add2", 0, "heartbeat_amplitude", "Add2", 1, "enable_unsquish", "enable_unsquish", 0, "anim_unsquish" ]
+node_connections = [ "output", 0, "Add2", "Add2", 0, "heartbeat_amplitude", "Add2", 1, "enable_unsquish", "heartbeat_restart", 0, "anim_heartbeat", "enable_unsquish", 0, "anim_unsquish", "heartbeat_amplitude", 0, "anim_idle", "heartbeat_amplitude", 1, "heartbeat_restart" ]
 
 [sub_resource type="SphereMesh" id=15]
 material = ExtResource( 5 )
@@ -190,9 +190,10 @@ anims/unsquish = SubResource( 6 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 14 )
 anim_player = NodePath("../AnimationPlayer")
+active = true
 parameters/Add2/add_amount = 1.0
 parameters/enable_unsquish/seek_position = -1.0
-parameters/heartbeat_amplitude/blend_amount = 0.82
+parameters/heartbeat_amplitude/blend_amount = 1.0
 parameters/heartbeat_restart/seek_position = -1.0
 
 [node name="Control" type="Control" parent="."]
