@@ -2,7 +2,7 @@
 
 [ext_resource path="res://font/Roboto-Bold.ttf" type="DynamicFontData" id=1]
 
-[sub_resource type="QuadMesh" id=1]
+[sub_resource type="QuadMesh" id=8]
 
 [sub_resource type="Shader" id=5]
 code = "shader_type spatial;
@@ -29,7 +29,7 @@ font_data = ExtResource( 1 )
 
 [node name="Label3D" type="MeshInstance"]
 transform = Transform( 2.64665, 0, 0, 0, 2.64665, 0, 0, 0, 2.64665, 0, 0, 0 )
-mesh = SubResource( 1 )
+mesh = SubResource( 8 )
 material/0 = SubResource( 4 )
 
 [node name="Viewport" type="Viewport" parent="."]
