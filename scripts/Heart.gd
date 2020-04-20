@@ -64,8 +64,9 @@ func _enter_state(new_state):
 	emit_signal("entered_state", new_state)
 
 func _on_mouse_exited():
-	_enter_state(STATE.idle)
-	charge = 0.0
+	if state == STATE.charging:
+		_enter_state(STATE.idle)
+		charge = 0.0
 
 func _on_mouse_entered():
 	if Input.is_action_pressed("charge"):
@@ -123,7 +124,7 @@ func _integrate_forces( physics_state ):
 				var collision_pos = physics_state.get_contact_collider_position(0)
 				var collision_normal = physics_state.get_contact_local_normal(0)
 				var splatter = splatter_spawner.instance()
-				get_parent().add_child(splatter)
+				#get_parent().add_child(splatter)
 				splatter.look_at(collision_normal.rotated(Vector3(-1.0, 0.0, 0.0), 0.5*PI), Vector3(0.0, 1.0, 0.0))
 				splatter.translation = collision_pos + Vector3(0.0, 0.001, 0.0)
 				linear_damp = 0.8
