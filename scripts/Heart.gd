@@ -22,6 +22,8 @@ export var timing_interval_good = 0.3
 
 var help_circle
 
+var checkpoint_position = Vector3(0.0, 0.0, 0.0)
+
 var rng = RandomNumberGenerator.new()
 
 enum TIMING {
@@ -64,6 +66,7 @@ func _ready():
 	animation_tree.set_active(false)
 	animation_tree.set("parameters/heartbeat_amplitude/blend_amount", 0.5)
 	rng.randomize()
+	checkpoint_position = translation
 
 func _enter_state(new_state):
 	print("entering state " + STATE.keys()[new_state])
@@ -153,6 +156,11 @@ func _integrate_forces( physics_state ):
 				charge = 0.0
 				audio_slap.play()
 				_enter_state(STATE.rolling)
+
+func back_to_checkpoint():
+	translation = checkpoint_position
+	life = 1.0
+	_enter_state(STATE.ready)
 
 func kill():
 	animation_tree.active = false
