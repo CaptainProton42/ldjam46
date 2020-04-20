@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://environments/world.tres" type="Environment" id=1]
 [ext_resource path="res://Heart.tscn" type="PackedScene" id=2]
@@ -10,8 +10,9 @@
 [ext_resource path="res://scripts/LevelFlow.gd" type="Script" id=8]
 [ext_resource path="res://textures/tutorial_1.PNG" type="Texture" id=9]
 [ext_resource path="res://Monitor.tscn" type="PackedScene" id=10]
-[ext_resource path="res://objects/JumpPad.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Label3D.tscn" type="PackedScene" id=12]
+[ext_resource path="res://textures/tutorial_2.PNG" type="Texture" id=11]
+[ext_resource path="res://font/Roboto-Bold.ttf" type="DynamicFontData" id=12]
+[ext_resource path="res://textures/tutorial_4.PNG" type="Texture" id=13]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -24,6 +25,18 @@ flags_transparent = true
 flags_unshaded = true
 albedo_texture = ExtResource( 9 )
 
+[sub_resource type="SpatialMaterial" id=12]
+flags_transparent = true
+flags_unshaded = true
+albedo_texture = ExtResource( 11 )
+
+[sub_resource type="SpatialMaterial" id=15]
+flags_transparent = true
+flags_unshaded = true
+albedo_texture = ExtResource( 13 )
+
+[sub_resource type="QuadMesh" id=8]
+
 [sub_resource type="Shader" id=5]
 code = "shader_type spatial;
 
@@ -35,13 +48,58 @@ void fragment() {
 	ALPHA = color.a;
 }"
 
-[sub_resource type="ViewportTexture" id=6]
-viewport_path = NodePath("Viewport")
+[sub_resource type="ViewportTexture" id=9]
+viewport_path = NodePath("Label3D/Viewport")
 
 [sub_resource type="ShaderMaterial" id=7]
 resource_local_to_scene = true
 shader = SubResource( 5 )
-shader_param/tex = SubResource( 6 )
+shader_param/tex = SubResource( 9 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 50
+font_data = ExtResource( 12 )
+
+[sub_resource type="ViewportTexture" id=10]
+viewport_path = NodePath("Label3D2/Viewport")
+
+[sub_resource type="ShaderMaterial" id=11]
+resource_local_to_scene = true
+shader = SubResource( 5 )
+shader_param/tex = SubResource( 10 )
+
+[sub_resource type="ViewportTexture" id=13]
+viewport_path = NodePath("Label3D3/Viewport")
+
+[sub_resource type="ShaderMaterial" id=14]
+resource_local_to_scene = true
+shader = SubResource( 5 )
+shader_param/tex = SubResource( 13 )
+
+[sub_resource type="ViewportTexture" id=18]
+viewport_path = NodePath("Label3D4/Viewport")
+
+[sub_resource type="ShaderMaterial" id=19]
+resource_local_to_scene = true
+shader = SubResource( 5 )
+shader_param/tex = SubResource( 18 )
+
+[sub_resource type="DynamicFont" id=22]
+size = 75
+font_data = ExtResource( 12 )
+
+[sub_resource type="ViewportTexture" id=20]
+viewport_path = NodePath("Label3D5/Viewport")
+
+[sub_resource type="ShaderMaterial" id=21]
+resource_local_to_scene = true
+shader = SubResource( 5 )
+shader_param/tex = SubResource( 20 )
+
+[sub_resource type="CubeMesh" id=16]
+
+[sub_resource type="ConcavePolygonShape" id=17]
+data = PoolVector3Array( -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
 
 [node name="TutorialLevel" type="Spatial"]
 
@@ -57,7 +115,7 @@ material/0 = null
 shape = SubResource( 2 )
 
 [node name="Heart" parent="." instance=ExtResource( 2 )]
-transform = Transform( -0.966113, 0.305921, -0.0006289, -0.304954, -0.969174, 0.00226526, 8.21373e-05, 0.00235695, 1.01309, -0.202082, 0.968386, 14.5572 )
+transform = Transform( -0.966113, 0.305921, -0.0006289, -0.304954, -0.969174, 0.00226526, 8.21373e-05, 0.00235695, 1.01309, 0.112047, 0.539713, 14.5572 )
 
 [node name="JumpPredictor" parent="." instance=ExtResource( 4 )]
 heart_path = NodePath("../Heart")
@@ -85,22 +143,141 @@ transform = Transform( 0.845131, 0.166261, -0.508046, 0.33234, 0.580981, 0.74297
 shadow_enabled = true
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 1.5011, -0.0905489, -3.95802e-09, 0, -6.57345e-08, 1.50383, -0.0905489, -1.5011, -6.56152e-08, 1.5834, 0.221263, 12.6911 )
+transform = Transform( 1.5011, -0.0905489, -3.95802e-09, 0, -6.57345e-08, 1.50383, -0.0905489, -1.5011, -6.56152e-08, 1.5834, 0.221263, 13.9194 )
 mesh = SubResource( 3 )
 material/0 = SubResource( 4 )
 
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+transform = Transform( 2.4017, -0.144874, -6.33265e-09, 0, -1.05172e-07, 2.40606, -0.144874, -2.4017, -1.04981e-07, -1.27266, 0.221263, 10.1993 )
+mesh = SubResource( 3 )
+material/0 = SubResource( 12 )
+
+[node name="MeshInstance3" type="MeshInstance" parent="."]
+transform = Transform( 1.54741, 0, 0, 0, -2.52104e-07, 1.54741, 0, -1.54741, -2.52104e-07, 2.15383, 0.221263, 8.40221 )
+mesh = SubResource( 3 )
+material/0 = SubResource( 15 )
+
 [node name="Monitor" parent="." instance=ExtResource( 10 )]
-margin_left = 296.48
-margin_top = 161.272
-margin_right = 296.48
-margin_bottom = 161.272
+margin_left = 301.624
+margin_top = 173.275
+margin_right = 301.624
+margin_bottom = 173.275
+rect_scale = Vector2( 0.296172, 0.296172 )
 heart_path = NodePath("../Heart")
 
-[node name="Jumppad" parent="." instance=ExtResource( 11 )]
-transform = Transform( -0.00131611, 0, -0.999999, 0, 1, 0, 0.999999, 0, -0.00131611, 0, 0.240543, 11.935 )
-forceHeart = 10.0
-forceVector = Vector3( 0, 1, -0.2 )
-
-[node name="Label3D" parent="." instance=ExtResource( 12 )]
-transform = Transform( 2.64665, 0, 0, 0, 0.601126, 2.57748, 0, -2.57748, 0.601126, 1.86342, 0, 12.6343 )
+[node name="Label3D" type="MeshInstance" parent="."]
+transform = Transform( 2.64665, 0, 0, 0, -4.31194e-07, 2.64665, 0, -2.64665, -4.31194e-07, 1.71244, 0.635818, 13.428 )
+mesh = SubResource( 8 )
 material/0 = SubResource( 7 )
+
+[node name="Viewport" type="Viewport" parent="Label3D"]
+size = Vector2( 800, 900 )
+transparent_bg = true
+render_target_v_flip = true
+
+[node name="Label" type="Label" parent="Label3D/Viewport"]
+margin_right = 800.0
+margin_bottom = 800.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 1, 0.392157, 0.392157, 1 )
+text = "Click the heart to move it.
+It will always jump away from you.
+
+Hold the mouse button to charge your jump."
+autowrap = true
+clip_text = true
+
+[node name="Label3D2" type="MeshInstance" parent="."]
+transform = Transform( 2.64665, 0, 0, 0, -4.31194e-07, 2.64665, 0, -2.64665, -4.31194e-07, -1.43442, 0.635818, 10.2817 )
+mesh = SubResource( 8 )
+material/0 = SubResource( 11 )
+
+[node name="Viewport" type="Viewport" parent="Label3D2"]
+size = Vector2( 800, 900 )
+transparent_bg = true
+render_target_v_flip = true
+
+[node name="Label" type="Label" parent="Label3D2/Viewport"]
+margin_right = 800.0
+margin_bottom = 3147.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 1, 0.392157, 0.392157, 1 )
+text = "Timing your jumps with the heartbeat will allow you to jump farther."
+autowrap = true
+
+[node name="Label3D3" type="MeshInstance" parent="."]
+transform = Transform( 2.64665, 0, 0, 0, -4.31194e-07, 2.64665, 0, -2.64665, -4.31194e-07, 2.57221, 0.635818, 8.73288 )
+mesh = SubResource( 8 )
+material/0 = SubResource( 14 )
+
+[node name="Viewport" type="Viewport" parent="Label3D3"]
+size = Vector2( 800, 900 )
+transparent_bg = true
+render_target_v_flip = true
+
+[node name="Label" type="Label" parent="Label3D3/Viewport"]
+margin_right = 800.0
+margin_bottom = 800.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 1, 0.392157, 0.392157, 1 )
+text = "The heart will stop beating if you don't jump for a while.
+
+Keep it alive!"
+autowrap = true
+
+[node name="Label3D4" type="MeshInstance" parent="."]
+transform = Transform( 2.64665, 0, 0, 0, -4.31194e-07, 2.64665, 0, -2.64665, -4.31194e-07, 0.313524, 0.633199, 7.08768 )
+mesh = SubResource( 8 )
+material/0 = SubResource( 19 )
+
+[node name="Viewport" type="Viewport" parent="Label3D4"]
+size = Vector2( 800, 900 )
+transparent_bg = true
+render_target_v_flip = true
+
+[node name="Label" type="Label" parent="Label3D4/Viewport"]
+margin_right = 800.0
+margin_bottom = 800.0
+custom_fonts/font = SubResource( 22 )
+custom_colors/font_color = Color( 1, 0.392157, 0.392157, 1 )
+text = "Try moving ahead!"
+autowrap = true
+
+[node name="Label3D5" type="MeshInstance" parent="."]
+transform = Transform( 2.64665, 0, 0, 0, -4.31194e-07, 2.64665, 0, -2.64665, -4.31194e-07, 0.0539681, 0.635818, 2.11138 )
+mesh = SubResource( 8 )
+material/0 = SubResource( 21 )
+
+[node name="Viewport" type="Viewport" parent="Label3D5"]
+size = Vector2( 800, 900 )
+transparent_bg = true
+render_target_v_flip = true
+
+[node name="Label" type="Label" parent="Label3D5/Viewport"]
+margin_right = 800.0
+margin_bottom = 800.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 1, 0.392157, 0.392157, 1 )
+text = "Maneuver the heart into the box to finish the level!"
+align = 1
+autowrap = true
+
+[node name="StaticBody2" type="StaticBody" parent="."]
+transform = Transform( 0.517191, 0, 0, 0, 3.17312, 0, 0, 0, 10.5239, 5.20436, 0, 5.02139 )
+
+[node name="MeshInstance" type="MeshInstance" parent="StaticBody2"]
+mesh = SubResource( 16 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody2"]
+shape = SubResource( 17 )
+
+[node name="StaticBody3" type="StaticBody" parent="."]
+transform = Transform( 0.517191, 0, 0, 0, 3.17312, 0, 0, 0, 10.5239, -6.2198, 0, 5.02139 )
+
+[node name="MeshInstance" type="MeshInstance" parent="StaticBody3"]
+mesh = SubResource( 16 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody3"]
+shape = SubResource( 17 )
