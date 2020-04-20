@@ -35,6 +35,8 @@ material/0 = null
 
 [node name="SpotLight" type="SpotLight" parent="."]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0, -1.86658 )
+light_energy = 0.84
+spot_range = 4.6
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0, 0 )
@@ -44,7 +46,7 @@ current = true
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.0302068, 0, 0.999544, 0, 1, 0, -0.999544, 0, 0.0302068, 55.0226, 0, 0 )
 light_color = Color( 0.682353, 0.682353, 0.682353, 1 )
-light_energy = 0.52
+light_energy = 0.56
 light_indirect_energy = 1.16
 
 [node name="Heart" type="RigidBody" parent="."]

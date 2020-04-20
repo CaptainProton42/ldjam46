@@ -120,7 +120,7 @@ nodes/heartbeat_amplitude/position = Vector2( 640, 120 )
 nodes/heartbeat_restart/node = SubResource( 13 )
 nodes/heartbeat_restart/position = Vector2( 360, 220 )
 nodes/output/position = Vector2( 1180, 320 )
-node_connections = [ "output", 0, "Add2", "heartbeat_restart", 0, "anim_heartbeat", "Add2", 0, "heartbeat_amplitude", "Add2", 1, "enable_unsquish", "enable_unsquish", 0, "anim_unsquish", "heartbeat_amplitude", 0, "anim_didle", "heartbeat_amplitude", 1, "heartbeat_restart" ]
+node_connections = [ "output", 0, "Add2", "heartbeat_restart", 0, "anim_heartbeat", "heartbeat_amplitude", 0, "anim_didle", "heartbeat_amplitude", 1, "heartbeat_restart", "enable_unsquish", 0, "anim_unsquish", "Add2", 0, "heartbeat_amplitude", "Add2", 1, "enable_unsquish" ]
 
 [sub_resource type="SphereMesh" id=15]
 material = ExtResource( 5 )
