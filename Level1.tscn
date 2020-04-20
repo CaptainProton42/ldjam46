@@ -829,6 +829,24 @@ transform = Transform( -1.62921e-07, 0, -0.999999, 0, 1, 0, 0.999999, 0, -1.6292
 [node name="CollisionShape" parent="CheckPoint" index="0"]
 transform = Transform( 1, 0, 1.42109e-14, 0, 1, 0, -1.42109e-14, 0, 1, 1.6559, 0, 0 )
 
+[node name="CheckPoint2" parent="." instance=ExtResource( 34 )]
+transform = Transform( -1.62921e-07, 0, -0.999999, 0, 1, 0, 0.999999, 0, -1.62921e-07, -48.3039, 0.697081, 7.3446 )
+
+[node name="CollisionShape" parent="CheckPoint2" index="0"]
+transform = Transform( 1, 0, 1.42109e-14, 0, 1, 0, -1.42109e-14, 0, 1, 1.6559, 0, -2.98815 )
+
+[node name="SpawnPoint" parent="CheckPoint2" index="1"]
+transform = Transform( 1, 0, 4.26326e-14, 0, 1, 0, -4.26326e-14, 0, 1, -0.961668, 0.389944, -2.77982 )
+
+[node name="CheckPoint3" parent="." instance=ExtResource( 34 )]
+transform = Transform( 0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 7.26418, 0.697081, 1.12483 )
+
+[node name="CollisionShape" parent="CheckPoint3" index="0"]
+transform = Transform( 1, 0, 1.42109e-14, 0, 1, 0, -1.42109e-14, 0, 1, 1.6559, 0, -1.22948 )
+
+[node name="SpawnPoint" parent="CheckPoint3" index="1"]
+transform = Transform( 0.999999, 0, 4.26325e-14, 0, 1, 0, -4.26325e-14, 0, 0.999999, 1.57409, 0.389944, -0.915287 )
+
 [node name="Pylons" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -56.0994, 0.09, 58.8289 )
 
@@ -1059,3 +1077,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 47.6856, 1.32361, -0.390995 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -45.203, 1.08665, 8.70902 )
 
 [editable path="CheckPoint"]
+
+[editable path="CheckPoint2"]
+
+[editable path="CheckPoint3"]
