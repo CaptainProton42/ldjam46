@@ -89,7 +89,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0.00367767 )
 }
 
-[sub_resource type="Animation" id=22]
+[sub_resource type="Animation" id=6]
 resource_name = "panic"
 loop = true
 tracks/0/type = "audio"
@@ -123,7 +123,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 )
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
 length = 0.2
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("CollisionShapePhysics/MeshInstance:material/0:shader_param/squish")
@@ -136,82 +136,82 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2 )
 }
 
-[sub_resource type="AnimationNodeAdd2" id=7]
-
-[sub_resource type="AnimationNodeAnimation" id=23]
-animation = "panic"
-
-[sub_resource type="AnimationNodeAnimation" id=8]
-animation = "heartbeat"
+[sub_resource type="AnimationNodeAdd2" id=8]
 
 [sub_resource type="AnimationNodeAnimation" id=9]
-animation = "idle"
+animation = "panic"
 
 [sub_resource type="AnimationNodeAnimation" id=10]
+animation = "heartbeat"
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "idle"
+
+[sub_resource type="AnimationNodeAnimation" id=12]
 animation = "unsquish"
-
-[sub_resource type="AnimationNodeTimeSeek" id=11]
-
-[sub_resource type="AnimationNodeBlend2" id=12]
 
 [sub_resource type="AnimationNodeTimeSeek" id=13]
 
-[sub_resource type="AnimationNodeBlend2" id=24]
+[sub_resource type="AnimationNodeBlend2" id=14]
 
-[sub_resource type="AnimationNodeBlendTree" id=14]
+[sub_resource type="AnimationNodeTimeSeek" id=15]
+
+[sub_resource type="AnimationNodeBlend2" id=16]
+
+[sub_resource type="AnimationNodeBlendTree" id=17]
 graph_offset = Vector2( -203.5, 139.75 )
-nodes/Add2/node = SubResource( 7 )
+nodes/Add2/node = SubResource( 8 )
 nodes/Add2/position = Vector2( 920, 300 )
-nodes/Animation/node = SubResource( 23 )
+nodes/Animation/node = SubResource( 9 )
 nodes/Animation/position = Vector2( 900, 500 )
-nodes/anim_heartbeat/node = SubResource( 8 )
+nodes/anim_heartbeat/node = SubResource( 10 )
 nodes/anim_heartbeat/position = Vector2( 20, 240 )
-nodes/anim_idle/node = SubResource( 9 )
+nodes/anim_idle/node = SubResource( 11 )
 nodes/anim_idle/position = Vector2( 20, 100 )
-nodes/anim_unsquish/node = SubResource( 10 )
+nodes/anim_unsquish/node = SubResource( 12 )
 nodes/anim_unsquish/position = Vector2( 420, 380 )
-nodes/enable_unsquish/node = SubResource( 11 )
+nodes/enable_unsquish/node = SubResource( 13 )
 nodes/enable_unsquish/position = Vector2( 680, 340 )
-nodes/heartbeat_amplitude/node = SubResource( 12 )
+nodes/heartbeat_amplitude/node = SubResource( 14 )
 nodes/heartbeat_amplitude/position = Vector2( 640, 120 )
-nodes/heartbeat_restart/node = SubResource( 13 )
+nodes/heartbeat_restart/node = SubResource( 15 )
 nodes/heartbeat_restart/position = Vector2( 360, 220 )
 nodes/output/position = Vector2( 1340, 340 )
-nodes/panic/node = SubResource( 24 )
+nodes/panic/node = SubResource( 16 )
 nodes/panic/position = Vector2( 1180, 440 )
-node_connections = [ "output", 0, "panic", "heartbeat_amplitude", 0, "anim_idle", "heartbeat_amplitude", 1, "heartbeat_restart", "heartbeat_restart", 0, "anim_heartbeat", "Add2", 0, "heartbeat_amplitude", "Add2", 1, "enable_unsquish", "enable_unsquish", 0, "anim_unsquish", "panic", 0, "Add2", "panic", 1, "Animation" ]
+node_connections = [ "output", 0, "panic", "panic", 0, "Add2", "panic", 1, "Animation", "heartbeat_amplitude", 0, "anim_idle", "heartbeat_amplitude", 1, "heartbeat_restart", "Add2", 0, "heartbeat_amplitude", "Add2", 1, "enable_unsquish", "enable_unsquish", 0, "anim_unsquish", "heartbeat_restart", 0, "anim_heartbeat" ]
 
-[sub_resource type="SphereMesh" id=15]
+[sub_resource type="SphereMesh" id=18]
 material = ExtResource( 5 )
 radius = 0.04
 height = 0.08
 radial_segments = 8
 rings = 8
 
-[sub_resource type="SpatialMaterial" id=16]
+[sub_resource type="SpatialMaterial" id=19]
 albedo_color = Color( 1, 0.392157, 0.392157, 1 )
 
-[sub_resource type="CylinderMesh" id=17]
-material = SubResource( 16 )
+[sub_resource type="CylinderMesh" id=20]
+material = SubResource( 19 )
 top_radius = 0.015
 bottom_radius = 0.015
 height = 0.15
 radial_segments = 6
 
-[sub_resource type="CylinderMesh" id=18]
+[sub_resource type="CylinderMesh" id=21]
 top_radius = 0.025
 bottom_radius = 0.025
 height = 0.15
 radial_segments = 6
 
-[sub_resource type="SpatialMaterial" id=19]
+[sub_resource type="SpatialMaterial" id=22]
 albedo_color = Color( 1, 0.392157, 0.392157, 1 )
 
-[sub_resource type="SpatialMaterial" id=20]
+[sub_resource type="SpatialMaterial" id=23]
 albedo_color = Color( 1, 0.392157, 0.392157, 1 )
 
-[sub_resource type="CylinderMesh" id=21]
-material = SubResource( 20 )
+[sub_resource type="CylinderMesh" id=24]
+material = SubResource( 23 )
 top_radius = 0.02
 bottom_radius = 0.02
 height = 0.15
@@ -246,11 +246,11 @@ shape = SubResource( 3 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/heartbeat = SubResource( 4 )
 anims/idle = SubResource( 5 )
-anims/panic = SubResource( 22 )
-anims/unsquish = SubResource( 6 )
+anims/panic = SubResource( 6 )
+anims/unsquish = SubResource( 7 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 14 )
+tree_root = SubResource( 17 )
 anim_player = NodePath("../AnimationPlayer")
 parameters/Add2/add_amount = 1.0
 parameters/enable_unsquish/seek_position = -1.0
@@ -272,7 +272,7 @@ lifetime = 0.5
 one_shot = true
 explosiveness = 0.75
 local_coords = false
-mesh = SubResource( 15 )
+mesh = SubResource( 18 )
 emission_shape = 3
 emission_points = PoolVector3Array( 0, 0, 0, 0, 0, 0.07, 0, 0, -0.05 )
 direction = Vector3( 0, 1, 0 )
@@ -284,7 +284,7 @@ color = Color( 1, 0.270588, 0.270588, 1 )
 
 [node name="SoftBody" type="SoftBody" parent="."]
 transform = Transform( 1, -7.34701e-12, 2.91038e-11, 1.31308e-11, 1, -8.61473e-09, 2.6921e-10, 6.0536e-09, 1, 0.00141913, 0.176137, -0.0253076 )
-mesh = SubResource( 17 )
+mesh = SubResource( 20 )
 material/0 = null
 collision_layer = 2
 parent_collision_ignore = NodePath("..")
@@ -332,8 +332,8 @@ attachments/12/offset = Vector3( 0.00141913, 0.131137, -0.0403076 )
 
 [node name="SoftBody2" type="SoftBody" parent="."]
 transform = Transform( 1, 0, 2.18279e-11, 1.31593e-11, 1, -9.54606e-09, 2.83762e-10, 6.0536e-09, 1, 0.0012265, 0.174013, 0.0218221 )
-mesh = SubResource( 18 )
-material/0 = SubResource( 19 )
+mesh = SubResource( 21 )
+material/0 = SubResource( 22 )
 parent_collision_ignore = NodePath("..")
 simulation_precision = 10
 pinned_points = [ 35, 30, 37, 31, 32, 33, 34, 27, 26, 28, 29, 24, 25 ]
@@ -379,7 +379,7 @@ attachments/12/offset = Vector3( 0.0228771, 0.129013, 0.0343221 )
 
 [node name="SoftBody3" type="SoftBody" parent="."]
 transform = Transform( 1, -3.68061e-12, 2.18279e-11, 1.3145e-11, 1, -9.0804e-09, 2.76486e-10, 6.0536e-09, 1, 0.00123212, 0.179523, 0.0873541 )
-mesh = SubResource( 21 )
+mesh = SubResource( 24 )
 material/0 = null
 parent_collision_ignore = NodePath("..")
 simulation_precision = 10

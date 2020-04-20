@@ -144,6 +144,7 @@ func _integrate_forces( physics_state ):
 				splatter.look_at(collision_normal.rotated(Vector3(-1.0, 0.0, 0.0), 0.5*PI), Vector3(0.0, 1.0, 0.0))
 				splatter.translation = collision_pos + Vector3(0.0, 0.001, 0.0)
 				linear_damp = 0.8
+				charge = 0.0
 				_enter_state(STATE.rolling)
 			
 func restart_heart(force_dir):
