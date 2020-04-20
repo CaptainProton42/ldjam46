@@ -602,14 +602,17 @@ transform = Transform( 1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -23.7102,
 [node name="Jumppad" parent="." instance=ExtResource( 16 )]
 transform = Transform( -1, 0, -3.89414e-07, 0, 1, 0, 3.89414e-07, 0, -1, 21.3759, 0.142151, -0.00768745 )
 forceHeart = 11.0
+forceVector = Vector3( 0.5, 1, 0 )
 
 [node name="Jumppad5" parent="." instance=ExtResource( 16 )]
 transform = Transform( -1, 0, -3.89414e-07, 0, 1, 0, 3.89414e-07, 0, -1, 22.471, 0.142151, 1.65985 )
 forceHeart = 11.0
+forceVector = Vector3( 0.5, 1, 0 )
 
 [node name="Jumppad4" parent="." instance=ExtResource( 16 )]
 transform = Transform( -1, 0, -3.89414e-07, 0, 1, 0, 3.89414e-07, 0, -1, 22.7349, 0.142151, -1.27159 )
 forceHeart = 11.0
+forceVector = Vector3( 0.5, 1, 0 )
 
 [node name="TrashCan" parent="." instance=ExtResource( 15 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.6406, 0.664369, 5.94822 )
@@ -905,11 +908,18 @@ transform = Transform( 1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -52.202, 
 
 [node name="Jumppad2" parent="." instance=ExtResource( 16 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -56.0827, 0.2, 42.8346 )
-forceHeart = 7.0
+forceHeart = 11.0
+forceVector = Vector3( 0, 1, -0.2 )
 
 [node name="Jumppad3" parent="." instance=ExtResource( 16 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -43.2002, 0.2, 35.6948 )
 forceHeart = 8.0
+forceVector = Vector3( 0, 1, 0.2 )
+
+[node name="Jumppad6" parent="." instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -50.1019, 0.2, 8.42479 )
+forceHeart = 11.0
+forceVector = Vector3( 0, 1, -0.2 )
 
 [node name="Arrow2" parent="." instance=ExtResource( 18 )]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -56.1294, 0.8, 29.0864 )
