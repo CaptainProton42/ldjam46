@@ -5,6 +5,7 @@ onready var heart = get_node(heart_path)
 
 onready var text_perfect = get_node("MeshPerfect")
 onready var text_good = get_node("MeshGood")
+onready var text_click = get_node("MeshClick")
 
 onready var dashed_circle = get_node("MeshDashed")
 onready var charge_circle = get_node("MeshInstance")
@@ -16,6 +17,7 @@ var force
 
 func _ready():
 	animation_tree.active = true
+	text_click.get_node("AnimationPlayer").play("blink")
 	heart.connect("heartbeat", self.animation_tree, "set", ["parameters/heartbeat/seek_position", 0.0])
 	heart.connect("jump", self, "_on_jump")
 	heart.connect("entered_state", self, "_on_heart_entered_state")
@@ -37,6 +39,11 @@ func _process(_delta):
 	charge_circle.get_surface_material(0).set_shader_param("fill", heart.charge)
 
 func _on_heart_entered_state(state):
+	if state == heart.STATE.ready:
+		text_click.visible = true
+	else:
+		text_click.visible = false
+
 	if state == heart.STATE.charging:
 		arrow.visible = true
 	else:
