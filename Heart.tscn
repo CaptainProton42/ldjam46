@@ -120,7 +120,7 @@ nodes/heartbeat_amplitude/position = Vector2( 640, 120 )
 nodes/heartbeat_restart/node = SubResource( 13 )
 nodes/heartbeat_restart/position = Vector2( 360, 220 )
 nodes/output/position = Vector2( 1180, 320 )
-node_connections = [ "output", 0, "Add2", "Add2", 0, "heartbeat_amplitude", "Add2", 1, "enable_unsquish", "heartbeat_restart", 0, "anim_heartbeat", "enable_unsquish", 0, "anim_unsquish", "heartbeat_amplitude", 0, "anim_idle", "heartbeat_amplitude", 1, "heartbeat_restart" ]
+node_connections = [ "output", 0, "Add2", "heartbeat_amplitude", 0, "anim_idle", "heartbeat_amplitude", 1, "heartbeat_restart", "heartbeat_restart", 0, "anim_heartbeat", "Add2", 0, "heartbeat_amplitude", "Add2", 1, "enable_unsquish", "enable_unsquish", 0, "anim_unsquish" ]
 
 [sub_resource type="SphereMesh" id=15]
 material = ExtResource( 5 )
@@ -160,14 +160,13 @@ radial_segments = 6
 
 [node name="Heart" type="RigidBody"]
 transform = Transform( 1.0131, -5.94569e-05, -8.20001e-05, 5.90786e-05, 1.01631, -0.00234951, 8.21373e-05, 0.00235695, 1.01309, 0, 0, 0 )
-collision_layer = 3
+collision_layer = 2
 contacts_reported = 1
 contact_monitor = true
 script = ExtResource( 2 )
 jump_force = 7.0
 speed_idle = 0.5
 time_till_death = 6.0
-timing_interval_perfect = 0.15
 timing_interval_good = 0.25
 
 [node name="CollisionShapePhysics" type="CollisionShape" parent="."]

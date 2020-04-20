@@ -52,7 +52,7 @@ signal jump
 signal heartbeat
 signal entered_state
 
-var charge_normal
+var charge_normal = Vector3(0.0, 0.0, 0.0)
 
 func _ready():
 	animation_tree.set_active(true)
@@ -74,13 +74,18 @@ func _on_mouse_entered():
 		_enter_state(STATE.charging)
 
 func _on_collider_input(camera, event, pos, normal, shape_idx):
-	charge_normal = normal
+	#charge_normal = normal
+	charge_normal.x = pos.x - translation.x
+	charge_normal.y = pos.y - translation.y
+	charge_normal.z = pos.z - translation.z
+	charge_normal = charge_normal.normalized()
+
 	if Input.is_action_just_pressed("charge"):
 		if state == STATE.idle:
 			_enter_state(STATE.charging)
 	if Input.is_action_just_released("charge"):
 		if state == STATE.charging:
-			var force_dir = -normal
+			var force_dir = -charge_normal
 			restart_heart(force_dir)
 
 func _process(delta):
@@ -94,6 +99,7 @@ func _process(delta):
 		else:
 			help_circle.arrow.rotation.y = Vector2(charge_normal.x, charge_normal.z).angle_to(Vector2(0.0, 1.0))
 			help_circle.arrow.visible = true
+				
 		material.set_shader_param("squish", charge)
 		material.set_shader_param("squish_dir", charge_normal)
 	if state != STATE.dead and state != STATE.boxed:

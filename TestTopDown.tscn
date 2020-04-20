@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Monitor.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Camera.gd" type="Script" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://TextAnnouncer.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scripts/LevelFlow.gd" type="Script" id=14]
 [ext_resource path="res://WinTrigger.tscn" type="PackedScene" id=15]
+[ext_resource path="res://JumpPredictor.tscn" type="PackedScene" id=16]
 
 [sub_resource type="BoxShape" id=1]
 
@@ -36,6 +37,7 @@ heart_path = NodePath("../Heart")
 
 [node name="StaticBody" type="StaticBody" parent="."]
 transform = Transform( 44.6974, 0, 0, 0, 0.198162, 0, 0, 0, 41.314, 0, 0, 0 )
+input_ray_pickable = false
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
 shape = SubResource( 1 )
@@ -56,6 +58,7 @@ script = ExtResource( 2 )
 
 [node name="Heart" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.01476, 3.13379, -0.195002 )
+collision_layer = 3
 
 [node name="w" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.67723, -0.15858, 0.276445 )
@@ -194,3 +197,6 @@ text_announcer_path = NodePath("../TextAnnouncer")
 
 [node name="WinTrigger" parent="." instance=ExtResource( 15 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.16392, 0.525921, 0 )
+
+[node name="JumpPredictor" parent="." instance=ExtResource( 16 )]
+heart_path = NodePath("../Heart")

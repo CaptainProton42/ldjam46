@@ -12,6 +12,8 @@ onready var animation_player = get_node("AnimationPlayer")
 onready var animation_tree = get_node("AnimationTree")
 onready var arrow = get_node("Arrow")
 
+var force
+
 func _ready():
 	animation_tree.active = true
 	heart.connect("heartbeat", self.animation_tree, "set", ["parameters/heartbeat/seek_position", 0.0])
