@@ -167,6 +167,8 @@ script = ExtResource( 2 )
 jump_force = 7.0
 speed_idle = 0.5
 time_till_death = 6.0
+timing_interval_perfect = 0.15
+timing_interval_good = 0.25
 
 [node name="CollisionShapePhysics" type="CollisionShape" parent="."]
 transform = Transform( 0.120551, 1.49392e-12, -2.72848e-12, -5.86198e-13, 0.120551, -1.45519e-10, -1.81899e-12, 1.74623e-10, 0.120551, 0.117188, 0.0909475, -0.0187147 )

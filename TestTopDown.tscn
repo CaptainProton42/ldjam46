@@ -29,6 +29,7 @@ margin_top = 165.802
 margin_right = 389.101
 margin_bottom = 165.802
 rect_scale = Vector2( 0.293255, 0.293255 )
+heart_path = NodePath("../Heart")
 
 [node name="StaticBody" type="StaticBody" parent="."]
 transform = Transform( 44.6974, 0, 0, 0, 0.198162, 0, 0, 0, 41.314, 0, 0, 0 )

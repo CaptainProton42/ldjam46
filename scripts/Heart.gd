@@ -138,7 +138,7 @@ func restart_heart(force_dir):
 	var force = (0.3 + 0.7*charge) * jump_force * force_dir.normalized() / timing_bonus
 	force.y *= -1.0
 	var timing_quality = TIMING.normal
-	var timing = abs(timer - 0.15 - round(timer - 0.15) / pulse_interval) # +0.15 da die animation etwas verschoben ist
+	var timing = abs(timer - 0.15 - round(timer - 0.15) / pulse_interval) # die animation is etwas verschoben
 	print(timing)
 	if timing < timing_interval_perfect:
 		print("PERFECT")

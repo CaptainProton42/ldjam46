@@ -1,6 +1,10 @@
 extends Control
 
 onready var monitor_line = preload("res://MonitorLine.tscn")
+onready var viewport = get_node("Viewport")
+onready var heart = get_node(heart_path)
+
+export var heart_path : NodePath
 
 var line_1
 var line_2
@@ -10,21 +14,19 @@ var width = 400
 var amplitude = 1.0
 
 func _ready():
-	line_1 = monitor_line.instance()
-	line_2 = monitor_line.instance()
-	get_node("Viewport").add_child(line_1)
-	get_node("Viewport").add_child(line_2)
-	line_1.position.x = 0
-	line_2.position.x = width
+	heart.connect("heartbeat", self, "add_blip")
+
+func add_blip():
+	var blip = monitor_line.instance()
+	blip.position.x = width
+	for i in range(blip.points.size()):
+		blip.points[i].y *= amplitude
+	viewport.add_child(blip)
 
 func _process(delta):
-	line_1.position.x -= width * delta
-	line_2.position.x -= width * delta
-	if line_1.position.x <= -width:
-		line_1.position.x = width
-		for i in range(line_1.points.size()):
-			line_1.points[i].y = line_1.original_points[i].y * amplitude
-	if line_2.position.x <= -width:
-		line_2.position.x = width
-		for i in range(line_2.points.size()):
-			line_2.points[i].y = line_2.original_points[i].y * amplitude
+	amplitude = heart.life
+	for i in range(viewport.get_child_count()):
+		var blip = viewport.get_child(i)
+		blip.position.x -= width * delta
+		if blip.position.x < -width:
+			blip.queue_free()
