@@ -39,7 +39,10 @@ func set_impulse(impulse):
 			pos += impulse * spacing
 			impulse += spacing * force
 			nodes[i].translation = pos
+			nodes[i].visible = true
 			if nodes[i].colliding:
+				for j in range(i+1, num_nodes):
+					nodes[j].visible = false
 				break
 
 func _on_heart_entered_state(state):

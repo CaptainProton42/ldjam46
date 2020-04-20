@@ -226,7 +226,7 @@ flags_transparent = true
 albedo_texture = ExtResource( 3 )
 
 [node name="HelpCircle" type="Spatial"]
-transform = Transform( 0.996809, 0, 0, 0, 0.996809, 0, 0, 0, 0.996809, 0, 0, 0 )
+transform = Transform( 1.00317, 0, 0, 0, 1.00317, 0, 0, 0, 1.00317, 0, 0, 0 )
 script = ExtResource( 2 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
