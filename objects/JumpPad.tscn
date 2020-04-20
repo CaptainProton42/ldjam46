@@ -34,6 +34,7 @@ __meta__ = {
 
 [node name="TriggerArea" type="Area" parent="."]
 transform = Transform( 1.78037, 0, 0.00013025, 0, 0.999999, 0, 0.000130254, 0, 1.85976, 0, -0.186353, 0 )
+input_ray_pickable = false
 
 [node name="CollisionShape" type="CollisionShape" parent="TriggerArea"]
 transform = Transform( 1.94027, 0, 9.31323e-10, 0, 1.5855, 0, -1.86265e-09, 0, 1.94027, -8.10623e-06, 0.333485, -0.000614882 )
@@ -41,6 +42,7 @@ shape = SubResource( 2 )
 
 [node name="ThrowArea" type="Area" parent="."]
 transform = Transform( 1.78037, 0, 0.00013025, 0, 0.999999, 0, 0.000130254, 0, 1.85976, 0, -0.0559341, 0 )
+input_ray_pickable = false
 
 [node name="CollisionShape" type="CollisionShape" parent="ThrowArea"]
 transform = Transform( 1.4576, 0, 6.98492e-10, 0, 2.44575, 0, -1.16415e-09, 0, 1.4576, 0.000218868, 0.723841, -0.00193167 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://environments/world.tres" type="Environment" id=1]
 [ext_resource path="res://Heart.tscn" type="PackedScene" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://scripts/LevelFlow.gd" type="Script" id=8]
 [ext_resource path="res://textures/tutorial_1.PNG" type="Texture" id=9]
 [ext_resource path="res://Monitor.tscn" type="PackedScene" id=10]
+[ext_resource path="res://objects/JumpPad.tscn" type="PackedScene" id=11]
+[ext_resource path="res://CheckPoint.tscn" type="PackedScene" id=12]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -74,3 +76,14 @@ margin_top = 161.272
 margin_right = 296.48
 margin_bottom = 161.272
 heart_path = NodePath("../Heart")
+
+[node name="Jumppad" parent="." instance=ExtResource( 11 )]
+transform = Transform( -0.00131611, 0, -0.999999, 0, 1, 0, 0.999999, 0, -0.00131611, 0, 0.240543, 11.935 )
+
+[node name="CheckPoint" parent="." instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.61363, 0.274132, 12.3763 )
+
+[node name="SpawnPoint" parent="CheckPoint" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.35983, 0.962311, 0.224223 )
+
+[editable path="CheckPoint"]
