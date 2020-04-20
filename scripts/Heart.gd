@@ -5,7 +5,6 @@ onready var collider_physics = get_node("CollisionShapePhysics")
 onready var animation_player = get_node("AnimationPlayer")
 onready var animation_tree = get_node("AnimationTree")
 onready var material = get_node("CollisionShapePhysics/MeshInstance").get_surface_material(0)
-onready var monitor = get_node("../Monitor")
 
 onready var splatter_spawner = preload("res://SpawnBloodSplatter.tscn")
 onready var particles = get_node("CPUParticles")
@@ -99,7 +98,6 @@ func _process(delta):
 		if (life <= 0.0):
 			emit_signal("dead")
 			_enter_state(STATE.dead)
-	monitor.amplitude = life
 
 func _physics_process(delta):
 	if state == STATE.charging:
