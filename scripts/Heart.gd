@@ -12,10 +12,20 @@ onready var particles = get_node("CPUParticles")
 
 export var jump_force = 5.0
 export var speed_idle = 0.2
+export var time_till_death = 5.0
+export var timing_bonus = 2.0 # multiplier
+export var timing_interval_perfect = 0.15
+export var timing_interval_good = 0.3
 
 var help_circle
 
 var rng = RandomNumberGenerator.new()
+
+enum TIMING {
+	perfect,
+	good,
+	normal
+}
 
 enum STATE {
 	charging,
@@ -33,7 +43,9 @@ var on_floor = false
 
 # Keep it alive!
 var life = 1.0
-var time_till_death = 3.0
+
+var timer = 0.0
+var pulse_interval = 1.0
 
 signal dead
 signal jump
@@ -68,13 +80,10 @@ func _on_collider_input(camera, event, pos, normal, shape_idx):
 	if Input.is_action_just_released("charge"):
 		if state == STATE.charging:
 			var force_dir = -normal
-			var force = (0.3 + 0.7*charge) * jump_force * force_dir.normalized()
-			force.y *= -1.0
-			apply_impulse(Vector3(0.0, 0.0, 0.0), force)
-			add_torque(10.0 * charge * Vector3(rng.randf(), rng.randf(), rng.randf()).normalized())
-			restart_heart()
+			restart_heart(force_dir)
 
 func _process(delta):
+	timer += delta
 	if state == STATE.charging or state == STATE.idle:
 		life -= delta / time_till_death
 		animation_tree.set("parameters/heartbeat_amplitude/blend_amount", life)
@@ -122,10 +131,29 @@ func _integrate_forces( physics_state ):
 				linear_damp = 0.8
 				_enter_state(STATE.rolling)
 			
-func restart_heart():
-	life = 1.0
+func restart_heart(force_dir):
+	life = 1.0 / timing_bonus
 	charging = false
-	charge = 0.0
 	animation_tree.set("parameters/heartbeat_restart/seek_position", 0.0)
-	emit_signal("jump")
+	var force = (0.3 + 0.7*charge) * jump_force * force_dir.normalized() / timing_bonus
+	force.y *= -1.0
+	var timing_quality = TIMING.normal
+	var timing = abs(timer - 0.15 - round(timer - 0.15) / pulse_interval) # +0.15 da die animation etwas verschoben ist
+	print(timing)
+	if timing < timing_interval_perfect:
+		print("PERFECT")
+		timing_quality = TIMING.perfect
+		life *= timing_bonus
+		force *= timing_bonus
+	elif timing < timing_interval_good:
+		life *= timing_bonus * 0.75
+		force *= timing_bonus * 0.75
+		print("GOOD")
+		timing_quality = TIMING.good
+		
+	add_torque(10.0 * charge * Vector3(rng.randf(), rng.randf(), rng.randf()).normalized())
+	apply_impulse(Vector3(0.0, 0.0, 0.0), force)
+	timer = 0.0
+	charge = 0.0
+	emit_signal("jump", timing_quality)
 	_enter_state(STATE.falling)

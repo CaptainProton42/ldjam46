@@ -121,7 +121,6 @@ __meta__ = {
 environment = ExtResource( 4 )
 
 [node name="HelpCircle" parent="." instance=ExtResource( 5 )]
-transform = Transform( 1.00197, 0, 0, 0, 1.00197, 0, 0, 0, 1.00197, 0, 0, 0 )
 heart_path = NodePath("../Heart")
 
 [node name="TrashCan" parent="." instance=ExtResource( 7 )]
