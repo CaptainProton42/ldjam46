@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/normalmap.jpg-bdfc361dae249766f61eb90ca0e6d48c.s3tc.stex"
-path.etc="res://.import/normalmap.jpg-bdfc361dae249766f61eb90ca0e6d48c.etc.stex"
+path.s3tc="res://.import/heart_icon.png-319bfe0e9b25d76acbf8064d660ec7e7.s3tc.stex"
+path.etc="res://.import/heart_icon.png-319bfe0e9b25d76acbf8064d660ec7e7.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://normalmap.jpg"
-dest_files=[ "res://.import/normalmap.jpg-bdfc361dae249766f61eb90ca0e6d48c.s3tc.stex", "res://.import/normalmap.jpg-bdfc361dae249766f61eb90ca0e6d48c.etc.stex" ]
+source_file="res://textures/heart_icon.png"
+dest_files=[ "res://.import/heart_icon.png-319bfe0e9b25d76acbf8064d660ec7e7.s3tc.stex", "res://.import/heart_icon.png-319bfe0e9b25d76acbf8064d660ec7e7.etc.stex" ]
 
 [params]
 

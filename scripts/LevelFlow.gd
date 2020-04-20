@@ -23,4 +23,5 @@ func _on_heart_entered_state(state):
 	if state == heart.STATE.dead:
 		text_announcer.show_message("Flatlined", "press [SPACE] to restart")
 	if state == heart.STATE.boxed:
+		yield(get_tree().create_timer(1.0), "timeout")
 		text_announcer.show_message("Boxed", "press [SPACE] to continue", Color("#3cbd4d"))
