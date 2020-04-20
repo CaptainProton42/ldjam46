@@ -89,7 +89,7 @@ shape = SubResource( 6 )
 anims/close = SubResource( 4 )
 
 [node name="WinTrigger" parent="." instance=ExtResource( 1 )]
-transform = Transform( 0.537764, 0, 0, 0, 0.346439, 0, 0, 0, 0.414399, 0, -0.131804, 0 )
+transform = Transform( 0.537764, 0, 0, 0, 0.174297, 0, 0, 0, 0.414399, 0, -0.0715586, 0 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 0.935775, 0, 0, 0, -1.52457e-07, 0.935775, 0, -0.935775, -1.52457e-07, 0, -0.220382, 0 )

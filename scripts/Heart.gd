@@ -8,6 +8,7 @@ onready var material = get_node("CollisionShapePhysics/MeshInstance").get_surfac
 
 onready var audio_blip = get_node("AudioBlip")
 onready var audio_fade_out = get_node("AudioFadeOut")
+onready var audio_slap = get_node("AudioStreamPlayer")
 
 onready var splatter_spawner = preload("res://SpawnBloodSplatter.tscn")
 onready var particles = get_node("CPUParticles")
@@ -30,6 +31,7 @@ enum TIMING {
 }
 
 enum STATE {
+	ready,
 	charging,
 	falling,
 	rolling,
@@ -38,7 +40,7 @@ enum STATE {
 	boxed
 }
 
-var state = STATE.idle
+var state = STATE.ready
 var charging = false
 var charge = 0.0
 
@@ -58,7 +60,8 @@ signal entered_state
 var charge_normal = Vector3(0.0, 0.0, 0.0)
 
 func _ready():
-	animation_tree.set_active(true)
+	_enter_state(STATE.ready)
+	animation_tree.set_active(false)
 	animation_tree.set("parameters/heartbeat_amplitude/blend_amount", 0.5)
 	rng.randomize()
 
@@ -86,6 +89,12 @@ func _on_collider_input(camera, event, pos, normal, shape_idx):
 	if Input.is_action_just_pressed("charge"):
 		if state == STATE.idle:
 			_enter_state(STATE.charging)
+		if state == STATE.ready:
+			var force_dir = -charge_normal
+			timer = 0.5 # so that perfect or good can not be triggered
+			restart_heart(force_dir)
+			animation_tree.set_active(true)
+			_enter_state(STATE.rolling)
 	if Input.is_action_just_released("charge"):
 		if state == STATE.charging:
 			var force_dir = -charge_normal
@@ -111,10 +120,7 @@ func _process(delta):
 		if (life <= 0.0):
 			animation_tree.set("parameters/panic/blend_amount", 1.0)
 		if (life <= -pulse_interval / time_till_death): # Give one heartbeat of mercy
-			animation_tree.active = false
-			audio_fade_out.play()
-			emit_signal("dead")
-			_enter_state(STATE.dead)
+			kill()
 
 func _physics_process(delta):
 	if state == STATE.charging:
@@ -144,7 +150,15 @@ func _integrate_forces( physics_state ):
 				splatter.look_at(collision_normal.rotated(Vector3(-1.0, 0.0, 0.0), 0.5*PI), Vector3(0.0, 1.0, 0.0))
 				splatter.translation = collision_pos + Vector3(0.0, 0.001, 0.0)
 				linear_damp = 0.8
+				charge = 0.0
+				audio_slap.play()
 				_enter_state(STATE.rolling)
+
+func kill():
+	animation_tree.active = false
+	audio_fade_out.play()
+	emit_signal("dead")
+	_enter_state(STATE.dead)	
 			
 func restart_heart(force_dir):
 	var new_life = 1.0 / timing_bonus
@@ -171,4 +185,4 @@ func restart_heart(force_dir):
 	timer = 0.0
 	charge = 0.0
 	emit_signal("jump", timing_quality)
-	_enter_state(STATE.falling)
+	_enter_state(STATE.rolling)

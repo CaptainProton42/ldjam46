@@ -54,6 +54,6 @@ func _on_heart_entered_state(state):
 func _process(_delta):
 	translation = heart.translation
 	if heart.state == heart.STATE.charging:
-		var impulse = -heart.charge_normal.normalized() * heart.charge * heart.jump_force / heart.mass / 1.2
+		var impulse = -heart.charge_normal.normalized() * heart.charge * heart.jump_force / heart.mass / 1.15
 		impulse.y = -impulse.y
 		set_impulse(impulse)
