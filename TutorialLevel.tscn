@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://environments/world.tres" type="Environment" id=1]
 [ext_resource path="res://Heart.tscn" type="PackedScene" id=2]
@@ -11,7 +11,7 @@
 [ext_resource path="res://textures/tutorial_1.PNG" type="Texture" id=9]
 [ext_resource path="res://Monitor.tscn" type="PackedScene" id=10]
 [ext_resource path="res://objects/JumpPad.tscn" type="PackedScene" id=11]
-[ext_resource path="res://CheckPoint.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Label3D.tscn" type="PackedScene" id=12]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -23,6 +23,25 @@
 flags_transparent = true
 flags_unshaded = true
 albedo_texture = ExtResource( 9 )
+
+[sub_resource type="Shader" id=5]
+code = "shader_type spatial;
+
+uniform sampler2D tex;
+
+void fragment() {
+	vec4 color = texture(tex, UV);
+	ALBEDO = color.rgb;
+	ALPHA = color.a;
+}"
+
+[sub_resource type="ViewportTexture" id=6]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="ShaderMaterial" id=7]
+resource_local_to_scene = true
+shader = SubResource( 5 )
+shader_param/tex = SubResource( 6 )
 
 [node name="TutorialLevel" type="Spatial"]
 
@@ -79,11 +98,9 @@ heart_path = NodePath("../Heart")
 
 [node name="Jumppad" parent="." instance=ExtResource( 11 )]
 transform = Transform( -0.00131611, 0, -0.999999, 0, 1, 0, 0.999999, 0, -0.00131611, 0, 0.240543, 11.935 )
+forceHeart = 10.0
+forceVector = Vector3( 0, 1, -0.2 )
 
-[node name="CheckPoint" parent="." instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.61363, 0.274132, 12.3763 )
-
-[node name="SpawnPoint" parent="CheckPoint" index="1"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.35983, 0.962311, 0.224223 )
-
-[editable path="CheckPoint"]
+[node name="Label3D" parent="." instance=ExtResource( 12 )]
+transform = Transform( 2.64665, 0, 0, 0, 0.601126, 2.57748, 0, -2.57748, 0.601126, 1.86342, 0, 12.6343 )
+material/0 = SubResource( 7 )

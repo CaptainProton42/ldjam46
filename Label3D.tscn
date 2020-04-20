@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://font/Roboto-Bold.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="QuadMesh" id=1]
+
+[sub_resource type="Shader" id=5]
+code = "shader_type spatial;
+
+uniform sampler2D tex;
+
+void fragment() {
+	vec4 color = texture(tex, UV);
+	ALBEDO = color.rgb;
+	ALPHA = color.a;
+}"
+
+[sub_resource type="ViewportTexture" id=3]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="ShaderMaterial" id=4]
+resource_local_to_scene = true
+shader = SubResource( 5 )
+shader_param/tex = SubResource( 3 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 50
+font_data = ExtResource( 1 )
+
+[node name="Label3D" type="MeshInstance"]
+transform = Transform( 2.64665, 0, 0, 0, 2.64665, 0, 0, 0, 2.64665, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 4 )
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 800, 900 )
+transparent_bg = true
+render_target_v_flip = true
+
+[node name="Label" type="Label" parent="Viewport"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 1, 0.392157, 0.392157, 1 )
+text = "Click the heart to move it.
+It will always jump away from you."
