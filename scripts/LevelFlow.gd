@@ -19,8 +19,8 @@ func _input(event):
 			heart.back_to_checkpoint()
 		
 	if heart.state == heart.STATE.boxed:
-		if Input.is_action_just_pressed("restart"):
-			print("YAY")
+		if Input.is_action_just_pressed("goto_checkpoint"):
+			get_tree().change_scene("res://StartMenu.tscn")
 
 func _on_heart_entered_state(state):
 	if state == heart.STATE.ready:

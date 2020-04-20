@@ -9,7 +9,7 @@ points = PoolVector3Array( -1.89679, -0.459073, -0.0929708, -1.8516, -0.302933, 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 1 )
 shader_param/heart_color = Color( 1, 0.392157, 0.392157, 1 )
-shader_param/bloat = 1.01071
+shader_param/bloat = 1.0
 shader_param/squish = 0.0
 shader_param/squish_dir = Vector3( 0, 1, 0 )
 shader_param/offset = Vector3( 1, 0.9, 0 )
