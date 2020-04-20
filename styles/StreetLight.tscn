@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://meshes/StreetLamp.obj" type="ArrayMesh" id=1]
+
+[sub_resource type="CylinderShape" id=1]
+radius = 0.1
+height = 3.3
+
+[sub_resource type="CylinderShape" id=2]
+radius = 0.1
+height = 0.4
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 0.2, 0.15, 0.4 )
+
+[node name="StreetLight" type="Spatial"]
+
+[node name="StaticBody" type="StaticBody" parent="."]
+
+[node name="StreetLamp" type="MeshInstance" parent="StaticBody"]
+mesh = ExtResource( 1 )
+material/0 = null
+material/1 = null
+material/2 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65294, 0 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 0.730734, -0.682662, 0, 0.682662, 0.730734, 0, 3.44314, 0.101972 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.54497, 0.650833 )
+shape = SubResource( 3 )

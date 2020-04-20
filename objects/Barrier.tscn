@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://meshes/Barrier.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://materials/barrier_white.tres" type="Material" id=2]
+[ext_resource path="res://materials/red.tres" type="Material" id=3]
+
+[sub_resource type="BoxShape" id=1]
+
+[node name="Barrier" type="Spatial"]
+
+[node name="StaticBody" type="StaticBody" parent="."]
+
+[node name="Barrier" type="MeshInstance" parent="StaticBody"]
+mesh = ExtResource( 1 )
+material/0 = null
+material/1 = null
+material/2 = null
+material/3 = ExtResource( 3 )
+material/4 = null
+material/5 = ExtResource( 3 )
+material/6 = null
+material/7 = ExtResource( 3 )
+material/8 = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 2.07, 0, 0, 0, 0.9, 0, 0, 0, 0.05, 0.0365936, -0.0225384, 0 )
+shape = SubResource( 1 )

@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Barrier.obj-c26d9b5e84e1908c7b6057e833efaf7f.mesh"
+
+[deps]
+
+files=[ "res://.import/Barrier.obj-c26d9b5e84e1908c7b6057e833efaf7f.mesh" ]
+
+source_file="res://meshes/Barrier.obj"
+dest_files=[ "res://.import/Barrier.obj-c26d9b5e84e1908c7b6057e833efaf7f.mesh", "res://.import/Barrier.obj-c26d9b5e84e1908c7b6057e833efaf7f.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
