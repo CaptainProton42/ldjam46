@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/Elevator.gd" type="Script" id=1]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 1, 0.1, 1 )
+
+[sub_resource type="SpatialMaterial" id=4]
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 0.5, 4, 0.5 )
+
+[node name="Elevator" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="Platform" type="StaticBody" parent="."]
+input_ray_pickable = false
+
+[node name="Mesh" type="MeshInstance" parent="Platform"]
+mesh = SubResource( 1 )
+material/0 = SubResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Platform"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.94765, 0 )
+shape = SubResource( 2 )

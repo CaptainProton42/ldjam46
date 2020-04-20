@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://meshes/ArrowRight.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://materials/orange.tres" type="Material" id=2]
+[ext_resource path="res://materials/black.tres" type="Material" id=3]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.4, 1, 0.05 )
+
+[node name="Arrow" type="Spatial"]
+
+[node name="StaticBody" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 0.920505, -0.390731, 0, 0.390731, 0.920505, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 0.920505, 0.390731, 0, -0.390731, 0.920505, 0, 0, 0.866763 )
+shape = SubResource( 1 )
+
+[node name="ArrowRight" type="MeshInstance" parent="StaticBody"]
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 3 )
