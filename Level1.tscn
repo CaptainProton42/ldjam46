@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://objects/Street.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Heart.tscn" type="PackedScene" id=2]
@@ -31,6 +31,8 @@
 [ext_resource path="res://objects/PaperBall2.tscn" type="PackedScene" id=29]
 [ext_resource path="res://objects/PaperBall1.tscn" type="PackedScene" id=30]
 [ext_resource path="res://objects/BallThrower.tscn" type="PackedScene" id=31]
+[ext_resource path="res://GoalBox.tscn" type="PackedScene" id=32]
+[ext_resource path="res://objects/Pot.tscn" type="PackedScene" id=33]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -85,9 +87,18 @@ directional_shadow_normal_bias = 0.0
 environment = ExtResource( 6 )
 
 [node name="Heart" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 32.1857, 6.03631, -9.60929 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -56.3409, 0.844054, 73.3573 )
 
 [node name="FlexibleCamera" parent="." instance=ExtResource( 5 )]
+
+[node name="GoalBox" parent="." instance=ExtResource( 32 )]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 39.966, 0.485511, -0.08 )
+
+[node name="Arrow" parent="GoalBox" instance=ExtResource( 18 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.77444, 0.266522, 0.760723 )
+
+[node name="Arrow2" parent="GoalBox" instance=ExtResource( 18 )]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -1.71587, 0.266522, 1.50196 )
 
 [node name="HelpCircle" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1.00197, 0, 0, 0, 1.00197, 0, 0, 0, 1.00197, 0, 0, 0 )
@@ -158,7 +169,7 @@ shape = SubResource( 9 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27.3339, 11.1495, 17.7714 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Building3"]
-transform = Transform( 13, 0, 0, 0, 13, 0, 0, 0, 13, 0, 0, 0 )
+transform = Transform( 7, 0, 0, 0, 13, 0, 0, 0, 13, -6.2153, 0, 0 )
 shape = SubResource( 3 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Building3"]
@@ -471,6 +482,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 0 )
 [node name="Street28" parent="Street" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0, 0 )
 
+[node name="Street29" parent="Street" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 0, 0 )
+
+[node name="Street30" parent="Street" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 0, 0 )
+
 [node name="StreetEdge" parent="Street" instance=ExtResource( 21 )]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -56, 0, 0 )
 
@@ -583,6 +600,15 @@ transform = Transform( 1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -23.7102,
 
 [node name="Jumppad" parent="." instance=ExtResource( 16 )]
 transform = Transform( -1, 0, -3.89414e-07, 0, 1, 0, 3.89414e-07, 0, -1, 21.3759, 0.142151, -0.00768745 )
+forceHeart = 11.0
+
+[node name="Jumppad5" parent="." instance=ExtResource( 16 )]
+transform = Transform( -1, 0, -3.89414e-07, 0, 1, 0, 3.89414e-07, 0, -1, 22.471, 0.142151, 1.65985 )
+forceHeart = 11.0
+
+[node name="Jumppad4" parent="." instance=ExtResource( 16 )]
+transform = Transform( -1, 0, -3.89414e-07, 0, 1, 0, 3.89414e-07, 0, -1, 22.7349, 0.142151, -1.27159 )
+forceHeart = 11.0
 
 [node name="TrashCan" parent="." instance=ExtResource( 15 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.6406, 0.664369, 5.94822 )
@@ -855,10 +881,157 @@ transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -45.481
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2833, 1.61107, 3.91262 )
 
 [node name="Gras5" parent="." instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 0.999993, -0.00382226, 0, 0.00382226, 0.999993, 29.037, 0.1, -12.9797 )
+transform = Transform( 1, 0, 0, 0, 0.999993, -0.00382226, 0, 0.00382226, 0.999993, 29.037, 0.176963, -12.9797 )
+
+[node name="Gras7" parent="." instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 0.999993, -0.00382226, 0, 0.00382226, 0.999993, 43.0323, 0.176963, -12.9555 )
 
 [node name="Gras6" parent="." instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, 0.999993, -0.00382226, 0, 0.00382226, 0.999993, 30.9468, 0.1, 12.7341 )
+transform = Transform( 1, 0, 0, 0, 0.999993, -0.00382226, 0, 0.00382226, 0.999993, 34.7098, 0.1, 12.7341 )
+
+[node name="Pot" parent="." instance=ExtResource( 33 )]
+transform = Transform( 1, 0, 0, 0, 0.999993, -0.00382226, 0, 0.00382226, 0.999993, -45.1659, 0.891393, 10.5172 )
+
+[node name="Gras8" parent="." instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 0.999993, -0.00382226, 0, 0.00382226, 0.999993, 42.914, 0.1, 12.7341 )
 
 [node name="BallThrower" parent="." instance=ExtResource( 31 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 32.513, 0.9, -10.479 )
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 32.513, 0.699589, -12.4717 )
+countdown = 3
+
+[node name="Car2" parent="." instance=ExtResource( 13 )]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 47.7691, 1.38492, 0.390123 )
+
+[node name="BoxEnd" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 49.6033, 1.21914, -6.09337 )
+
+[node name="Box6" parent="BoxEnd" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.415859, 2.11036, 2.10499 )
+
+[node name="Box20" parent="BoxEnd" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.395504, 4.17637, 2.10499 )
+
+[node name="Box8" parent="BoxEnd" instance=ExtResource( 10 )]
+
+[node name="Box27" parent="BoxEnd" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.04949, 0 )
+
+[node name="Box7" parent="BoxEnd" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.196 )
+
+[node name="Box24" parent="BoxEnd" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.08192, 12.196 )
+
+[node name="Box9" parent="BoxEnd" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.314781, 0, 14.2177 )
+
+[node name="Box28" parent="BoxEnd" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.314781, 2.06913, 14.2304 )
+
+[node name="Box3" parent="BoxEnd" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0175064, 10.0786 )
+
+[node name="Box10" parent="BoxEnd" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3597, 0.0175064, 10.0352 )
+
+[node name="Box14" parent="BoxEnd" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3597, 0.0175064, 7.80068 )
+
+[node name="Box16" parent="BoxEnd" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3597, 0.0175064, 5.64974 )
+
+[node name="Box18" parent="BoxEnd" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3597, 0.0175064, 3.51681 )
+
+[node name="Box13" parent="BoxEnd" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3597, 2.1275, 9.96663 )
+
+[node name="Box25" parent="BoxEnd" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3597, 4.17848, 9.96663 )
+
+[node name="Box15" parent="BoxEnd" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3597, 2.1275, 7.82974 )
+
+[node name="Box23" parent="BoxEnd" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3597, 4.15757, 7.82974 )
+
+[node name="Box17" parent="BoxEnd" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3597, 2.06303, 5.62004 )
+
+[node name="Box22" parent="BoxEnd" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3597, 4.09945, 5.62004 )
+
+[node name="Box19" parent="BoxEnd" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3597, 2.1275, 3.46787 )
+
+[node name="Box21" parent="BoxEnd" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3597, 4.1908, 3.46787 )
+
+[node name="Box11" parent="BoxEnd" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.27488, 2.08936, 12.1472 )
+
+[node name="Box12" parent="BoxEnd" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.27488, -0.00573814, 12.2831 )
+
+[node name="Box4" parent="BoxEnd" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05962, 10.0786 )
+
+[node name="Box26" parent="BoxEnd" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.14091, 10.0786 )
+
+[node name="Box5" parent="BoxEnd" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.349083, 0.0269037, 2.10499 )
+
+[node name="HedgeEnd" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 47.6856, 1.32361, -0.390995 )
+
+[node name="Hedge2" parent="HedgeEnd" instance=ExtResource( 17 )]
+transform = Transform( 0.576917, 0, 0.816803, 0, 1, 0, -0.816803, 0, 0.576917, -0.442627, -0.25216, 9.7483 )
+
+[node name="Hedge9" parent="HedgeEnd" instance=ExtResource( 17 )]
+transform = Transform( -0.586288, 0, 0.810103, 0, 1, 0, -0.810103, 0, -0.586288, 0.10931, 0.0887885, -9.21238 )
+
+[node name="Hedge10" parent="HedgeEnd" instance=ExtResource( 17 )]
+transform = Transform( 0.564981, 0, -0.825104, 0, 1, 0, 0.825104, 0, 0.564981, -2.417, 0.0887885, -12.3226 )
+
+[node name="Hedge11" parent="HedgeEnd" instance=ExtResource( 17 )]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -4.08657, 0.0887885, -16.0021 )
+
+[node name="Hedge12" parent="HedgeEnd" instance=ExtResource( 17 )]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -6.74168, 0.0887885, -18.0937 )
+
+[node name="Hedge13" parent="HedgeEnd" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.861, 0.0887885, -17.8603 )
+
+[node name="Hedge14" parent="HedgeEnd" instance=ExtResource( 17 )]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -15.1689, 0.0887885, -18.0937 )
+
+[node name="Hedge15" parent="HedgeEnd" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19.0155, 0.0887885, -17.5912 )
+
+[node name="Hedge16" parent="HedgeEnd" instance=ExtResource( 17 )]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -23.8377, 0.0887885, -18.0937 )
+
+[node name="Hedge3" parent="HedgeEnd" instance=ExtResource( 17 )]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, -2.27245, -0.25216, 13.951 )
+
+[node name="Hedge4" parent="HedgeEnd" instance=ExtResource( 17 )]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -1.97541, -0.25216, 17.397 )
+
+[node name="Hedge5" parent="HedgeEnd" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.57299, -0.25216, 19.4066 )
+
+[node name="Hedge6" parent="HedgeEnd" instance=ExtResource( 17 )]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -9.35805, -0.25216, 18.9822 )
+
+[node name="Hedge7" parent="HedgeEnd" instance=ExtResource( 17 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2681, -0.25216, 19.3901 )
+
+[node name="Hedge8" parent="HedgeEnd" instance=ExtResource( 17 )]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -17.8019, -0.25216, 18.9822 )
+
+[node name="Car" parent="." instance=ExtResource( 14 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 47.6856, 1.32361, -0.390995 )
+
+[node name="Box3" parent="." instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -45.203, 1.08665, 8.70902 )

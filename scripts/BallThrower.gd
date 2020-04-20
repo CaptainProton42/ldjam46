@@ -24,6 +24,11 @@ func _process(delta):
 		#respawn
 		elapsed = 0
 		ball.translation = start_pos
-		ball.apply_impulse(Vector3(0.0, 0.0, 0.0), direction * 30)
+		ball.apply_impulse(Vector3(0.0, 0.0, 0.0), direction * 20)
 		
 	elapsed += delta
+
+
+func _on_Ball_body_entered(body):
+	if body.get_name() == "Heart":
+		body.kill()

@@ -12,6 +12,8 @@ radius = 0.364281
 script = ExtResource( 3 )
 
 [node name="Ball" type="RigidBody" parent="."]
+contacts_reported = 2
+contact_monitor = true
 
 [node name="CollisionShape" type="CollisionShape" parent="Ball"]
 shape = SubResource( 1 )
@@ -20,3 +22,4 @@ shape = SubResource( 1 )
 mesh = ExtResource( 4 )
 material/0 = ExtResource( 2 )
 material/1 = ExtResource( 1 )
+[connection signal="body_entered" from="Ball" to="." method="_on_Ball_body_entered"]
