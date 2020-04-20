@@ -3,6 +3,7 @@ extends Control
 onready var monitor_line = preload("res://MonitorLine.tscn")
 onready var viewport = get_node("Viewport")
 onready var heart = get_node(heart_path)
+onready var audio = get_node("AudioStreamPlayer")
 
 export var heart_path : NodePath
 
@@ -22,6 +23,7 @@ func add_blip():
 	for i in range(blip.points.size()):
 		blip.points[i].y *= amplitude
 	viewport.add_child(blip)
+	audio.play()
 
 func _process(delta):
 	amplitude = heart.life
