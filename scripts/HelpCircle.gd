@@ -3,6 +3,9 @@ extends Spatial
 export var heart_path : NodePath
 onready var heart = get_node(heart_path)
 
+onready var text_perfect = get_node("MeshPerfect")
+onready var text_good = get_node("MeshGood")
+
 onready var dashed_circle = get_node("MeshDashed")
 onready var charge_circle = get_node("MeshInstance")
 onready var animation_player = get_node("AnimationPlayer")
@@ -16,8 +19,15 @@ func _ready():
 	heart.connect("entered_state", self, "_on_heart_entered_state")
 	heart.help_circle = self
 
-func _on_jump():
-	animation_tree.set("parameters/pop/seek_position", 0.0)
+func _on_jump(timing_quality):
+	if timing_quality == heart.TIMING.perfect:
+		text_good.visible = false
+		text_perfect.visible = true
+		animation_tree.set("parameters/pop/seek_position", 0.0)
+	elif timing_quality == heart.TIMING.good:
+		text_good.visible = true
+		text_perfect.visible = false
+		animation_tree.set("parameters/pop/seek_position", 0.0)
 
 func _process(_delta):
 	translation = heart.translation

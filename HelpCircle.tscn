@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://textures/helpcircle.png" type="Texture" id=1]
 [ext_resource path="res://scripts/HelpCircle.gd" type="Script" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://shaders/helpcircle_dashed.shader" type="Shader" id=5]
 [ext_resource path="res://shaders/helpcircle_charge.shader" type="Shader" id=6]
 [ext_resource path="res://textures/chargecircle.png" type="Texture" id=7]
+[ext_resource path="res://textures/perfect_text.png" type="Texture" id=8]
+[ext_resource path="res://textures/good_text.png" type="Texture" id=9]
 
 [sub_resource type="QuadMesh" id=1]
 
@@ -26,6 +28,35 @@ shader_param/color_active = Color( 1, 0.392157, 0.392157, 1 )
 shader_param/color_inactive = Color( 0.392157, 0.392157, 0.392157, 1 )
 shader_param/active = true
 shader_param/texture_alpha = ExtResource( 1 )
+
+[sub_resource type="QuadMesh" id=17]
+size = Vector2( 0.4, 0.1 )
+
+[sub_resource type="Shader" id=18]
+code = "shader_type spatial;
+
+uniform sampler2D texture_alpha;
+uniform float alpha : hint_range(0.0f, 1.0f);
+uniform vec4 color : hint_color;
+
+void fragment() {
+	vec4 tex = texture(texture_alpha, UV);
+	ALPHA = tex.a;
+	ALBEDO = color.rgb;
+	ALPHA *= alpha;
+}"
+
+[sub_resource type="ShaderMaterial" id=20]
+shader = SubResource( 18 )
+shader_param/alpha = 0.0
+shader_param/color = Color( 1, 0.392157, 0.392157, 1 )
+shader_param/texture_alpha = ExtResource( 8 )
+
+[sub_resource type="ShaderMaterial" id=19]
+shader = SubResource( 18 )
+shader_param/alpha = 0.0
+shader_param/color = Color( 1, 0.392157, 0.392157, 1 )
+shader_param/texture_alpha = ExtResource( 9 )
 
 [sub_resource type="Animation" id=5]
 resource_name = "idle"
@@ -61,7 +92,8 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=6]
-length = 0.3
+length = 0.4
+step = 0.05
 tracks/0/type = "bezier"
 tracks/0/path = NodePath(".:scale:x")
 tracks/0/interp = 1
@@ -69,8 +101,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 0.999862, -0.25, 0, 0.0610962, 0.0792323, 1.18474, -0.0497922, -0.0284423, 0.0786821, -0.0142212, 1.00393, -0.12639, 0.0101581, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.1, 0.3 )
+"points": PoolRealArray( 0.999862, -0.25, 0, 0.0610962, 0.0792323, 1.692, -0.0497922, -0.0284423, 0.0786821, -0.0142212, 1.00393, -0.12639, 0.0101581, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.15, 0.4 )
 }
 tracks/1/type = "bezier"
 tracks/1/path = NodePath(".:scale:y")
@@ -79,8 +111,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( 0.999862, -0.25, 0, 0.0610962, 0.0792323, 1.18474, -0.0497922, -0.0284423, 0.0786821, -0.0142212, 1.00393, -0.12639, 0.0101581, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.1, 0.3 )
+"points": PoolRealArray( 0.999862, -0.25, 0, 0.0610962, 0.0792323, 1.692, -0.0497922, -0.0284423, 0.0786821, -0.0142212, 1.00393, -0.12639, 0.0101581, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.15, 0.4 )
 }
 tracks/2/type = "bezier"
 tracks/2/path = NodePath(".:scale:z")
@@ -89,8 +121,68 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"points": PoolRealArray( 0.999862, -0.25, 0, 0.0610962, 0.0792323, 1.18474, -0.0497922, -0.0284423, 0.0786821, -0.0142212, 1.00393, -0.12639, 0.0101581, 0.25, 0 ),
-"times": PoolRealArray( 0, 0.1, 0.3 )
+"points": PoolRealArray( 0.999862, -0.25, 0, 0.0610962, 0.0792323, 1.692, -0.0497922, -0.0284423, 0.0786821, -0.0142212, 1.00393, -0.12639, 0.0101581, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.15, 0.4 )
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("MeshDashed:rotation_degrees:y")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 180.0, 360.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("MeshPerfect:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.5, 0.5, 0.5 ), Vector3( 2, 2, 2 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("MeshPerfect:material/0:shader_param/alpha")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.1, 0.15, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 0.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("MeshGood:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.5, 0.5, 0.5 ), Vector3( 2, 2, 2 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("MeshGood:material/0:shader_param/alpha")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.1, 0.15, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 0.0 ]
 }
 
 [sub_resource type="AnimationNodeAdd2" id=7]
@@ -135,7 +227,7 @@ flags_transparent = true
 albedo_texture = ExtResource( 3 )
 
 [node name="HelpCircle" type="Spatial"]
-transform = Transform( 1.00197, 0, 0, 0, 1.00197, 0, 0, 0, 1.00197, 0, 0, 0 )
+transform = Transform( 1.17931, 0, 0, 0, 1.17931, 0, 0, 0, 1.17931, 0, 0, 0 )
 script = ExtResource( 2 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
@@ -144,9 +236,19 @@ mesh = SubResource( 1 )
 material/0 = SubResource( 2 )
 
 [node name="MeshDashed" type="MeshInstance" parent="."]
-transform = Transform( 0.528, 0, 0, 0, -8.60221e-08, 0.522, 0, -0.528, -8.50446e-08, 0, 0, 0 )
+transform = Transform( 0.446083, -0.282479, -1.22072e-08, 0, -2.30796e-08, 0.522, -0.282479, -0.446083, -1.92773e-08, 0, 0, 0 )
 mesh = SubResource( 3 )
 material/0 = SubResource( 4 )
+
+[node name="MeshPerfect" type="MeshInstance" parent="."]
+transform = Transform( 0.526655, -0.441916, -1.93168e-08, 0, -3.00516e-08, 0.6875, -0.441916, -0.526655, -2.30208e-08, 0.294583, 0, -0.193873 )
+mesh = SubResource( 17 )
+material/0 = SubResource( 20 )
+
+[node name="MeshGood" type="MeshInstance" parent="."]
+transform = Transform( 0.526655, -0.441916, -1.93168e-08, 0, -3.00516e-08, 0.6875, -0.441916, -0.526655, -2.30208e-08, 0.296145, 0, -0.193873 )
+mesh = SubResource( 17 )
+material/0 = SubResource( 19 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/heartbeat = ExtResource( 4 )
@@ -156,7 +258,6 @@ anims/pop = SubResource( 6 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 14 )
 anim_player = NodePath("../AnimationPlayer")
-active = true
 parameters/Add2/add_amount = 0.5
 parameters/amplitude/blend_amount = 1.0
 parameters/heartbeat/seek_position = -1.0
