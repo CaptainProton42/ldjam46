@@ -14,6 +14,7 @@ data = PoolVector3Array( -5, 7.8172, -0.2087, 5, 7.8172, -0.2087, -5, 3, 4.7913,
 
 [node name="StaticBody" type="StaticBody" parent="."]
 input_ray_pickable = false
+collision_layer = 5
 
 [node name="House" type="MeshInstance" parent="StaticBody"]
 mesh = ExtResource( 6 )

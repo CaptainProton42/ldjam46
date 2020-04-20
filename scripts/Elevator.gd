@@ -34,4 +34,3 @@ func _process(delta):
 	elif platform.translation.y < start_pos.y:
 		direction = 1
 	platform.translation += Vector3(0, delta * 0.5 * direction, 0)
-	print(platform.translation.y - start_pos.y)
