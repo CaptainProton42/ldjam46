@@ -1,10 +1,12 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://meshes/heart_no_valves.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://scripts/Heart.gd" type="Script" id=2]
 [ext_resource path="res://shaders/heart.shader" type="Shader" id=3]
 [ext_resource path="res://MonitorViewport.tscn" type="PackedScene" id=4]
 [ext_resource path="res://shaders/BloodSplatter.tres" type="Material" id=5]
+[ext_resource path="res://audio/blip.wav" type="AudioStream" id=6]
+[ext_resource path="res://audio/blip_fadeout.wav" type="AudioStream" id=7]
 
 [sub_resource type="ConvexPolygonShape" id=1]
 points = PoolVector3Array( -1.89679, -0.459073, -0.0929708, -1.8516, -0.302933, 0.105948, -1.8475, -1.0118, -0.0116393, -1.80853, -1.16906, -0.404816, -1.76523, -0.423877, -0.480226, -1.693, -1.09157, -0.603804, -1.61633, -0.103937, -0.448002, -1.61291, -1.68153, -0.484182, -1.57118, -0.0701879, 1.0082, -1.5384, 0.333067, 0.22436, -1.53545, -1.76235, -0.643365, -1.52829, -0.77568, 0.963948, -1.49747, -1.21136, 0.857003, -1.4582, -0.0247019, 1.13445, -1.45636, -1.76199, 0.224055, -1.42382, -1.73645, -0.774926, -1.33755, -1.83975, 0.145725, -1.30431, -1.97776, -0.575438, -1.30046, -0.697378, -0.885251, -1.29985, -0.341283, -0.843914, -1.25727, 0.399849, -0.207088, -1.22357, -1.85517, -0.77385, -1.184, -1.37644, -0.894864, -1.1821, 0.255432, -0.569243, -1.17997, -0.697634, 1.20848, -1.10383, -2.0153, -0.294489, -1.10233, 0.491226, 1.01666, -1.1, -1.55793, 0.653711, -1.09897, -1.24215, 0.961681, -1.02399, -0.057298, 1.26477, -0.904162, -0.975866, -0.931534, -0.904157, 0.259933, 1.22194, -0.904124, -0.0977826, 1.26364, -0.825044, -0.419339, -0.886877, -0.746101, -1.13267, 1.05587, -0.70711, -0.026628, -0.72273, -0.706078, -1.9261, 0.0264706, -0.702409, -2.02694, -0.540509, -0.665917, -0.578131, 1.21752, -0.665423, 0.416935, -0.292379, -0.665319, 0.536835, 0.742, -0.663389, 0.546337, 0.545924, -0.629531, -1.75804, 0.380977, -0.625254, -1.77287, -0.811303, -0.624959, 0.300189, 1.18228, -0.590395, -1.44328, 0.773296, -0.55126, 0.401268, -0.207763, -0.515181, -1.63226, 0.495866, -0.470438, -1.84125, 0.0666803, -0.468133, -0.73685, -0.846082, -0.430591, -0.144877, 1.1321, -0.390569, -1.76426, -0.565926, -0.277214, -0.775903, 1.00803, -0.273289, -0.14527, -0.604077, -0.239441, -1.44093, 0.301739, -0.237433, -1.05072, 0.85164, -0.236713, 0.00915977, 0.0671102, -0.158289, -0.619263, 0.891348, -0.155335, -0.382233, -0.603572, -0.154097, -0.18428, 0.816447, -0.116807, -0.185719, -0.445253, -0.0674835, -1.17484, -0.492244, 0.00216664, -1.01263, -0.209316, 0.0454344, -0.420345, -0.289808 )
@@ -12,7 +14,7 @@ points = PoolVector3Array( -1.89679, -0.459073, -0.0929708, -1.8516, -0.302933, 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 3 )
 shader_param/heart_color = Color( 1, 0.392157, 0.392157, 1 )
-shader_param/bloat = 1.00317
+shader_param/bloat = 1.0
 shader_param/squish = 0.0
 shader_param/squish_dir = Vector3( 0, 1, 0 )
 shader_param/offset = Vector3( 1, 0.9, 0 )
@@ -59,6 +61,20 @@ tracks/2/keys = {
 "method": "emit_signal"
 } ]
 }
+tracks/3/type = "audio"
+tracks/3/path = NodePath("AudioBlip")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 6 )
+} ],
+"times": PoolRealArray( 0 )
+}
 
 [sub_resource type="Animation" id=5]
 loop = true
@@ -71,6 +87,40 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "points": PoolRealArray( 1, -0.144656, 0.0168508, 0.218209, -0.000680387 ),
 "times": PoolRealArray( 0.00367767 )
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "panic"
+loop = true
+tracks/0/type = "audio"
+tracks/0/path = NodePath("AudioBlip")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 6 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 6 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 6 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 6 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 6 )
+} ],
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 )
 }
 
 [sub_resource type="Animation" id=6]
@@ -88,6 +138,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationNodeAdd2" id=7]
 
+[sub_resource type="AnimationNodeAnimation" id=23]
+animation = "panic"
+
 [sub_resource type="AnimationNodeAnimation" id=8]
 animation = "heartbeat"
 
@@ -103,10 +156,14 @@ animation = "unsquish"
 
 [sub_resource type="AnimationNodeTimeSeek" id=13]
 
+[sub_resource type="AnimationNodeBlend2" id=24]
+
 [sub_resource type="AnimationNodeBlendTree" id=14]
-graph_offset = Vector2( 0, 48.75 )
+graph_offset = Vector2( -203.5, 139.75 )
 nodes/Add2/node = SubResource( 7 )
-nodes/Add2/position = Vector2( 900, 260 )
+nodes/Add2/position = Vector2( 920, 300 )
+nodes/Animation/node = SubResource( 23 )
+nodes/Animation/position = Vector2( 900, 500 )
 nodes/anim_heartbeat/node = SubResource( 8 )
 nodes/anim_heartbeat/position = Vector2( 20, 240 )
 nodes/anim_idle/node = SubResource( 9 )
@@ -119,8 +176,10 @@ nodes/heartbeat_amplitude/node = SubResource( 12 )
 nodes/heartbeat_amplitude/position = Vector2( 640, 120 )
 nodes/heartbeat_restart/node = SubResource( 13 )
 nodes/heartbeat_restart/position = Vector2( 360, 220 )
-nodes/output/position = Vector2( 1180, 320 )
-node_connections = [ "output", 0, "Add2", "heartbeat_amplitude", 0, "anim_idle", "heartbeat_amplitude", 1, "heartbeat_restart", "heartbeat_restart", 0, "anim_heartbeat", "Add2", 0, "heartbeat_amplitude", "Add2", 1, "enable_unsquish", "enable_unsquish", 0, "anim_unsquish" ]
+nodes/output/position = Vector2( 1340, 340 )
+nodes/panic/node = SubResource( 24 )
+nodes/panic/position = Vector2( 1180, 440 )
+node_connections = [ "output", 0, "panic", "heartbeat_amplitude", 0, "anim_idle", "heartbeat_amplitude", 1, "heartbeat_restart", "heartbeat_restart", 0, "anim_heartbeat", "Add2", 0, "heartbeat_amplitude", "Add2", 1, "enable_unsquish", "enable_unsquish", 0, "anim_unsquish", "panic", 0, "Add2", "panic", 1, "Animation" ]
 
 [sub_resource type="SphereMesh" id=15]
 material = ExtResource( 5 )
@@ -187,6 +246,7 @@ shape = SubResource( 3 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/heartbeat = SubResource( 4 )
 anims/idle = SubResource( 5 )
+anims/panic = SubResource( 22 )
 anims/unsquish = SubResource( 6 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -196,6 +256,7 @@ parameters/Add2/add_amount = 1.0
 parameters/enable_unsquish/seek_position = -1.0
 parameters/heartbeat_amplitude/blend_amount = 1.0
 parameters/heartbeat_restart/seek_position = -1.0
+parameters/panic/blend_amount = 0.0
 
 [node name="Control" type="Control" parent="."]
 margin_right = 40.0
@@ -362,6 +423,12 @@ attachments/11/offset = Vector3( 0.0185526, 0.134523, 0.0973541 )
 attachments/12/point_index = 24
 attachments/12/spatial_attachment_path = NodePath("..")
 attachments/12/offset = Vector3( 0.00123212, 0.134523, 0.107354 )
+
+[node name="AudioBlip" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="AudioFadeOut" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
 [connection signal="input_event" from="AreaInput" to="." method="_on_collider_input"]
 [connection signal="mouse_entered" from="AreaInput" to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="AreaInput" to="." method="_on_mouse_exited"]

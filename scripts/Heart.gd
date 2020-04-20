@@ -6,6 +6,9 @@ onready var animation_player = get_node("AnimationPlayer")
 onready var animation_tree = get_node("AnimationTree")
 onready var material = get_node("CollisionShapePhysics/MeshInstance").get_surface_material(0)
 
+onready var audio_blip = get_node("AudioBlip")
+onready var audio_fade_out = get_node("AudioFadeOut")
+
 onready var splatter_spawner = preload("res://SpawnBloodSplatter.tscn")
 onready var particles = get_node("CPUParticles")
 
@@ -90,9 +93,9 @@ func _on_collider_input(camera, event, pos, normal, shape_idx):
 
 func _process(delta):
 	timer += delta
+	animation_tree.set("parameters/heartbeat_amplitude/blend_amount", life)
 	if state == STATE.charging or state == STATE.idle:
 		life -= delta / time_till_death
-		animation_tree.set("parameters/heartbeat_amplitude/blend_amount", life)
 	if state == STATE.charging:
 		if Vector2(charge_normal.x, charge_normal.z).length() < 0.15:
 			help_circle.arrow.visible = false
@@ -103,7 +106,13 @@ func _process(delta):
 		material.set_shader_param("squish", charge)
 		material.set_shader_param("squish_dir", charge_normal)
 	if state != STATE.dead and state != STATE.boxed:
+		if (life > 0.0):
+			animation_tree.set("parameters/panic/blend_amount", 0.0)
 		if (life <= 0.0):
+			animation_tree.set("parameters/panic/blend_amount", 1.0)
+		if (life <= -pulse_interval / time_till_death): # Give one heartbeat of mercy
+			animation_tree.active = false
+			audio_fade_out.play()
 			emit_signal("dead")
 			_enter_state(STATE.dead)
 
@@ -138,24 +147,24 @@ func _integrate_forces( physics_state ):
 				_enter_state(STATE.rolling)
 			
 func restart_heart(force_dir):
-	life = 1.0 / timing_bonus
+	var new_life = 1.0 / timing_bonus
 	charging = false
 	animation_tree.set("parameters/heartbeat_restart/seek_position", 0.0)
 	var force = (0.3 + 0.7*charge) * jump_force * force_dir.normalized() / timing_bonus
 	force.y *= -1.0
 	var timing_quality = TIMING.normal
 	var timing = abs(timer - 0.15 - round(timer - 0.15) / pulse_interval) # die animation is etwas verschoben
-	print(timing)
 	if timing < timing_interval_perfect:
-		print("PERFECT")
 		timing_quality = TIMING.perfect
-		life *= timing_bonus
+		new_life *= timing_bonus
 		force *= timing_bonus
 	elif timing < timing_interval_good:
-		life *= timing_bonus * 0.75
+		new_life *= timing_bonus * 0.75
 		force *= timing_bonus * 0.75
-		print("GOOD")
 		timing_quality = TIMING.good
+
+	if new_life > life:
+		life = new_life
 		
 	add_torque(10.0 * charge * Vector3(rng.randf(), rng.randf(), rng.randf()).normalized())
 	apply_impulse(Vector3(0.0, 0.0, 0.0), force)

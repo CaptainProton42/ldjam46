@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://audio/blip.wav" type="AudioStream" id=1]
 [ext_resource path="res://scripts/Monitor.gd" type="Script" id=2]
 
 [sub_resource type="Shader" id=1]
@@ -64,6 +63,3 @@ texture = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 1 )
