@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://environments/world.tres" type="Environment" id=1]
 [ext_resource path="res://Heart.tscn" type="PackedScene" id=2]
@@ -86,6 +86,18 @@ shader_param/tex = SubResource( 18 )
 
 [sub_resource type="DynamicFont" id=22]
 size = 75
+font_data = ExtResource( 12 )
+
+[sub_resource type="ViewportTexture" id=25]
+viewport_path = NodePath("Label3D6/Viewport")
+
+[sub_resource type="ShaderMaterial" id=26]
+resource_local_to_scene = true
+shader = SubResource( 5 )
+shader_param/tex = SubResource( 25 )
+
+[sub_resource type="DynamicFont" id=24]
+size = 50
 font_data = ExtResource( 12 )
 
 [sub_resource type="ViewportTexture" id=20]
@@ -180,7 +192,7 @@ margin_right = 800.0
 margin_bottom = 800.0
 custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 1, 0.392157, 0.392157, 1 )
-text = "Click the heart to move it.
+text = "Click inside the circle to move the heart.
 It will always jump away from you.
 
 Hold the mouse button to charge your jump."
@@ -202,7 +214,8 @@ margin_right = 800.0
 margin_bottom = 3147.0
 custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 1, 0.392157, 0.392157, 1 )
-text = "Timing your jumps with the heartbeat will allow you to jump farther."
+text = "Releasing the mouse button on time with the heartbeats will allow you to move farther.
+"
 autowrap = true
 
 [node name="Label3D3" type="MeshInstance" parent="."]
@@ -241,6 +254,24 @@ margin_bottom = 800.0
 custom_fonts/font = SubResource( 22 )
 custom_colors/font_color = Color( 1, 0.392157, 0.392157, 1 )
 text = "Try moving ahead!"
+autowrap = true
+
+[node name="Label3D6" type="MeshInstance" parent="."]
+transform = Transform( 2.64665, 0, 0, 0, -4.31194e-07, 2.64665, 0, -2.64665, -4.31194e-07, -1.44614, 0.633199, 12.4374 )
+mesh = SubResource( 8 )
+material/0 = SubResource( 26 )
+
+[node name="Viewport" type="Viewport" parent="Label3D6"]
+size = Vector2( 800, 900 )
+transparent_bg = true
+render_target_v_flip = true
+
+[node name="Label" type="Label" parent="Label3D6/Viewport"]
+margin_right = 800.0
+margin_bottom = 800.0
+custom_fonts/font = SubResource( 24 )
+custom_colors/font_color = Color( 1, 0.392157, 0.392157, 1 )
+text = "The red dots allow you to aim perfect jumps."
 autowrap = true
 
 [node name="Label3D5" type="MeshInstance" parent="."]

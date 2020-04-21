@@ -9,6 +9,7 @@
 [node name="Box" type="Spatial"]
 
 [node name="StaticBody" type="StaticBody" parent="."]
+input_ray_pickable = false
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
 shape = SubResource( 1 )

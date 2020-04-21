@@ -1,4 +1,4 @@
-extends RigidBody
+extends StaticBody
 
 
 # Declare member variables here. Examples:
@@ -21,6 +21,6 @@ func _process(delta):
 		var size = 0.5 - diff.y / 900
 		
 		translation = Vector3(-3 + diff.y / 200, 0.1, -1.9 + diff.x / 500)
-		scale = Vector3(size, size, size)
+		scale = Vector3(size, size, size) * 10
 		
 		rotate_y(delta)
