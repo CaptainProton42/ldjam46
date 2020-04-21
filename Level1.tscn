@@ -612,6 +612,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25.1505, 0.1025, -2.0622 )
 
 [node name="Jumppad" parent="TrashJump" instance=ExtResource( 16 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -25.1512, -0.293756, -2.06482 )
+forceHeart = 10.0
+forceObjects = 6.0
+forceVector = Vector3( 0.1, 1, 0 )
 
 [node name="PaperBall1" parent="TrashJump" instance=ExtResource( 30 )]
 transform = Transform( 0.999996, 0.0029496, 0, -0.0029496, 0.999996, 0, 0, 0, 1, -25.173, -0.0801675, -2.2683 )
